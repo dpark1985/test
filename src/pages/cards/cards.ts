@@ -15,11 +15,11 @@ export class CardsPage {
 
 	constructor(
 		public route: RoutingService,
-		public navCtrl: NavController, 
+		public navCtrl: NavController,
 		public navParams: NavParams,
 		public menuCtrl: MenuController
 	) {
-		this.route.setCurrentRoute({name: 'cards', spaceid: this.navParams.get('spaceid')});
+		this.route.setCurrentRoute({ name: 'cards', spaceid: this.navParams.get('spaceid') });
 	}
 
 	ionViewDidLoad() {

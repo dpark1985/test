@@ -1,138 +1,12 @@
 webpackJsonp([22],{
 
-/***/ 157:
-/***/ (function(module, exports) {
-
-function webpackEmptyAsyncContext(req) {
-	// Here Promise.resolve().then() is used instead of new Promise() to prevent
-	// uncatched exception popping up in devtools
-	return Promise.resolve().then(function() {
-		throw new Error("Cannot find module '" + req + "'.");
-	});
-}
-webpackEmptyAsyncContext.keys = function() { return []; };
-webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
-module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 157;
-
-/***/ }),
-
-/***/ 202:
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"../pages/account-settings/account-email-verification/account-email-verification.module": [
-		673,
-		21
-	],
-	"../pages/account-settings/account-resets/account-resets.module": [
-		674,
-		20
-	],
-	"../pages/account-settings/account-settings.module": [
-		675,
-		19
-	],
-	"../pages/cards/card-history/card-history.module": [
-		676,
-		18
-	],
-	"../pages/cards/card-unread/card-unread.module": [
-		677,
-		17
-	],
-	"../pages/cards/card/card.module": [
-		678,
-		16
-	],
-	"../pages/cards/cards.module": [
-		679,
-		15
-	],
-	"../pages/files/files.module": [
-		680,
-		14
-	],
-	"../pages/interlinks/interlinks.module": [
-		681,
-		13
-	],
-	"../pages/schedules/schedule/schedule.module": [
-		682,
-		12
-	],
-	"../pages/schedules/schedules.module": [
-		683,
-		11
-	],
-	"../pages/settings/settings.module": [
-		684,
-		10
-	],
-	"../pages/settings/software-information/software-information.module": [
-		685,
-		9
-	],
-	"../pages/settings/terms-and-policies/terms-and-policies.module": [
-		686,
-		8
-	],
-	"../pages/space-settings/space-colors/space-colors.module": [
-		687,
-		7
-	],
-	"../pages/space-settings/space-invitations/space-invitations.module": [
-		688,
-		6
-	],
-	"../pages/space-settings/space-logs/space-logs.module": [
-		689,
-		5
-	],
-	"../pages/space-settings/space-members/space-members.module": [
-		690,
-		4
-	],
-	"../pages/space-settings/space-settings.module": [
-		691,
-		3
-	],
-	"../pages/space-settings/space-storage/space-storage.module": [
-		692,
-		2
-	],
-	"../pages/todos/todo/todo.module": [
-		693,
-		1
-	],
-	"../pages/todos/todos.module": [
-		694,
-		0
-	]
-};
-function webpackAsyncContext(req) {
-	var ids = map[req];
-	if(!ids)
-		return Promise.reject(new Error("Cannot find module '" + req + "'."));
-	return __webpack_require__.e(ids[1]).then(function() {
-		return __webpack_require__(ids[0]);
-	});
-};
-webpackAsyncContext.keys = function webpackAsyncContextKeys() {
-	return Object.keys(map);
-};
-webpackAsyncContext.id = 202;
-module.exports = webpackAsyncContext;
-
-/***/ }),
-
-/***/ 339:
+/***/ 147:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RoutingService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -164,13 +38,177 @@ var RoutingService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 340:
+/***/ 148:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SpaceService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var SpaceService = /** @class */ (function () {
+    function SpaceService() {
+        this.currentSpace = new __WEBPACK_IMPORTED_MODULE_1_rxjs__["BehaviorSubject"](null);
+        this.cast = this.currentSpace.asObservable();
+    }
+    SpaceService.prototype.setCurrentSpace = function (space) {
+        this.currentSpace.next(space);
+    };
+    SpaceService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [])
+    ], SpaceService);
+    return SpaceService;
+}());
+
+//# sourceMappingURL=space-service.js.map
+
+/***/ }),
+
+/***/ 159:
+/***/ (function(module, exports) {
+
+function webpackEmptyAsyncContext(req) {
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncatched exception popping up in devtools
+	return Promise.resolve().then(function() {
+		throw new Error("Cannot find module '" + req + "'.");
+	});
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = 159;
+
+/***/ }),
+
+/***/ 204:
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"../pages/account-settings/account-email-verification/account-email-verification.module": [
+		674,
+		21
+	],
+	"../pages/account-settings/account-resets/account-resets.module": [
+		675,
+		20
+	],
+	"../pages/account-settings/account-settings.module": [
+		676,
+		19
+	],
+	"../pages/cards/card-history/card-history.module": [
+		677,
+		18
+	],
+	"../pages/cards/card-unread/card-unread.module": [
+		678,
+		17
+	],
+	"../pages/cards/card/card.module": [
+		679,
+		16
+	],
+	"../pages/cards/cards.module": [
+		680,
+		15
+	],
+	"../pages/files/files.module": [
+		681,
+		14
+	],
+	"../pages/interlinks/interlinks.module": [
+		682,
+		13
+	],
+	"../pages/schedules/schedule/schedule.module": [
+		683,
+		12
+	],
+	"../pages/schedules/schedules.module": [
+		684,
+		11
+	],
+	"../pages/settings/settings.module": [
+		685,
+		10
+	],
+	"../pages/settings/software-information/software-information.module": [
+		686,
+		9
+	],
+	"../pages/settings/terms-and-policies/terms-and-policies.module": [
+		687,
+		8
+	],
+	"../pages/space-settings/space-colors/space-colors.module": [
+		688,
+		7
+	],
+	"../pages/space-settings/space-invitations/space-invitations.module": [
+		689,
+		6
+	],
+	"../pages/space-settings/space-logs/space-logs.module": [
+		690,
+		5
+	],
+	"../pages/space-settings/space-members/space-members.module": [
+		691,
+		4
+	],
+	"../pages/space-settings/space-settings.module": [
+		692,
+		3
+	],
+	"../pages/space-settings/space-storage/space-storage.module": [
+		693,
+		2
+	],
+	"../pages/todos/todo/todo.module": [
+		694,
+		1
+	],
+	"../pages/todos/todos.module": [
+		695,
+		0
+	]
+};
+function webpackAsyncContext(req) {
+	var ids = map[req];
+	if(!ids)
+		return Promise.reject(new Error("Cannot find module '" + req + "'."));
+	return __webpack_require__.e(ids[1]).then(function() {
+		return __webpack_require__(ids[0]);
+	});
+};
+webpackAsyncContext.keys = function webpackAsyncContextKeys() {
+	return Object.keys(map);
+};
+webpackAsyncContext.id = 204;
+module.exports = webpackAsyncContext;
+
+/***/ }),
+
+/***/ 342:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(341);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(345);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(347);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -178,7 +216,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 345:
+/***/ 347:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -186,18 +224,20 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(667);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(671);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(672);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__ = __webpack_require__(335);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_splash_screen__ = __webpack_require__(338);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_routing_service__ = __webpack_require__(339);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(668);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(672);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(673);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_splash_screen__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_routing_service__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_space_service__ = __webpack_require__(148);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -219,7 +259,7 @@ var AppModule = /** @class */ (function () {
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], {
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], {
                     preloadModules: true
                 }, {
                     links: [
@@ -248,7 +288,7 @@ var AppModule = /** @class */ (function () {
                     ]
                 }),
             ],
-            bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* IonicApp */]],
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicApp */]],
             entryComponents: [
                 __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */],
                 __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */],
@@ -257,8 +297,9 @@ var AppModule = /** @class */ (function () {
             providers: [
                 __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__["a" /* StatusBar */],
                 __WEBPACK_IMPORTED_MODULE_7__ionic_native_splash_screen__["a" /* SplashScreen */],
-                { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicErrorHandler */] },
-                __WEBPACK_IMPORTED_MODULE_8__services_routing_service__["a" /* RoutingService */]
+                { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicErrorHandler */] },
+                __WEBPACK_IMPORTED_MODULE_8__services_routing_service__["a" /* RoutingService */],
+                __WEBPACK_IMPORTED_MODULE_9__services_space_service__["a" /* SpaceService */]
             ]
         })
     ], AppModule);
@@ -269,15 +310,17 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 667:
+/***/ 668:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(335);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_routing_service__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_space_service__ = __webpack_require__(148);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -291,28 +334,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var MyApp = /** @class */ (function () {
-    function MyApp(platform, statusBar, splashScreen) {
+    function MyApp(events, route, spaceService, platform, statusBar, splashScreen) {
+        this.events = events;
+        this.route = route;
+        this.spaceService = spaceService;
         this.platform = platform;
         this.statusBar = statusBar;
         this.splashScreen = splashScreen;
         this.spaces = [];
         this.initializeApp();
-        // used for an example of ngFor and navigation
-        // this.pages = [
-        // 	{ title: 'Cards', component: 'cards', params: { spaceid: '123' } },
-        // 	{ title: 'Card Details123', component: 'card', params: { spaceid: '123', cardid: '123' } },
-        // 	{ title: 'Card Details456', component: 'card', params: { spaceid: '123', cardid: '456' } },
-        // 	{ title: 'Card Details789', component: 'card', params: { spaceid: '123', cardid: '789' } },
-        // 	{ title: 'Schedules', component: 'schedules', params: { spaceid: '123' } },
-        // 	{ title: 'Schedule Details123', component: 'schedule', params: { spaceid: '123', scheduleid: '123' } },
-        // 	{ title: 'Schedule Details456', component: 'schedule', params: { spaceid: '123', scheduleid: '456' } },
-        // 	{ title: 'Schedule Details789', component: 'schedule', params: { spaceid: '123', scheduleid: '789' } },
-        // 	{ title: 'Todos', component: 'todos', params: { spaceid: '123' } },
-        // 	{ title: 'Todo Details123', component: 'todo', params: { spaceid: '123', todoid: '123' } },
-        // 	{ title: 'Todo Details456', component: 'todo', params: { spaceid: '123', todoid: '456' } },
-        // 	{ title: 'Todo Details789', component: 'todo', params: { spaceid: '123', todoid: '789' } },
-        // ];
+        this.spaces.push({
+            title: 'Space-all',
+            spaceid: 'all'
+        });
         for (var i = 0; i < 10; i++) {
             this.spaces.push({
                 title: "Space-" + i,
@@ -327,8 +364,6 @@ var MyApp = /** @class */ (function () {
     MyApp.prototype.initializeNatives = function () {
         var _this = this;
         this.platform.ready().then(function () {
-            // Okay, so the platform is ready and our plugins are available.
-            // Here you can do any higher level native things you might need.
             _this.statusBar.styleDefault();
             _this.splashScreen.hide();
         });
@@ -336,38 +371,51 @@ var MyApp = /** @class */ (function () {
     MyApp.prototype.initializePages = function () {
         this.rootPage = 'cards';
         this.rootParams = { spaceid: 'all' };
-        console.log(this.platform.is('cordova'));
-        console.log(this.platform.is('android'));
-        console.log(this.platform.is('ios'));
+        this.initializeEvents();
+    };
+    MyApp.prototype.initializeEvents = function () {
+        var _this = this;
+        this.events.subscribe('setRoot', function (options) {
+            _this.nav.setRoot(options.name, { spaceid: options.spaceid });
+        });
     };
     MyApp.prototype.changeSpace = function (space) {
-        console.log(space);
+        var _this = this;
+        this.route.cast.first().subscribe(function (route) {
+            _this.spaceService.setCurrentSpace(space);
+            _this.route.setCurrentRoute({ name: route.name, spaceid: space.spaceid });
+            _this.nav.setRoot(route.name, { spaceid: space.spaceid });
+        });
     };
     MyApp.prototype.ionChange = function (ev) {
-        console.log('----ion-change----');
-        console.log(ev);
-        console.log(ev._plt.is('cordova'));
-        console.log(ev._plt.is('android'));
-        console.log(ev._plt.is('ios'));
+        // console.log('----ion-change----');
+        // console.log(ev);
+        // console.log(ev._plt.is('cordova'));
+        // console.log(ev._plt.is('android'));
+        // console.log(ev._plt.is('ios'));
     };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Nav */]),
-        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Nav */]) === "function" && _a || Object)
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/app/app.html"*/'<ion-split-pane (ionChange)="ionChange($event)">\n	<ion-menu [content]="content" id="leftSideMenu" type="overlay">\n		<ion-header>\n			<ion-toolbar>\n				<ion-title>Menu</ion-title>\n			</ion-toolbar>\n		</ion-header>\n	\n		<ion-content>\n			<ion-list>\n				<button menuClose ion-item *ngFor="let s of spaces" (click)="changeSpace(s)">\n					{{s.title}}\n				</button>\n			</ion-list>\n		</ion-content>\n	\n	</ion-menu>\n	\n	<ion-nav [root]="rootPage" [rootParams]="rootParams" #content swipeBackEnabled="false" main></ion-nav>\n</ion-split-pane>\n'/*ion-inline-end:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/aitch3/Workspace/O2Palm/test-pwa/src/app/app.html"*/'<ion-split-pane (ionChange)="ionChange($event)">\n	<ion-menu [content]="content" id="leftSideMenu" type="overlay">\n		<ion-header>\n			<ion-toolbar>\n				<ion-title>Menu</ion-title>\n			</ion-toolbar>\n		</ion-header>\n	\n		<ion-content>\n			<ion-list>\n				<button menuClose ion-item *ngFor="let s of spaces" (click)="changeSpace(s)">\n					{{s.title}}\n				</button>\n			</ion-list>\n		</ion-content>\n	\n	</ion-menu>\n	\n	<ion-nav [root]="rootPage" [rootParams]="rootParams" #content swipeBackEnabled="false" main></ion-nav>\n</ion-split-pane>\n'/*ion-inline-end:"/Users/aitch3/Workspace/O2Palm/test-pwa/src/app/app.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_4__services_routing_service__["a" /* RoutingService */],
+            __WEBPACK_IMPORTED_MODULE_5__services_space_service__["a" /* SpaceService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
+            __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
     return MyApp;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
 
-/***/ 671:
+/***/ 672:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -391,9 +439,9 @@ var HomePage = /** @class */ (function () {
     }
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <h3>Ionic Menu Starter</h3>\n\n  <p>\n    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.\n  </p>\n\n  <button ion-button secondary menuToggle>Toggle Menu</button>\n</ion-content>\n'/*ion-inline-end:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/aitch3/Workspace/O2Palm/test-pwa/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <h3>Ionic Menu Starter</h3>\n\n  <p>\n    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.\n  </p>\n\n  <button ion-button secondary menuToggle>Toggle Menu</button>\n</ion-content>\n'/*ion-inline-end:"/Users/aitch3/Workspace/O2Palm/test-pwa/src/pages/home/home.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]])
     ], HomePage);
     return HomePage;
 }());
@@ -402,7 +450,7 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 672:
+/***/ 673:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -447,9 +495,9 @@ var ListPage = /** @class */ (function () {
     };
     ListPage = ListPage_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-list',template:/*ion-inline-start:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/pages/list/list.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>List</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      <ion-icon [name]="item.icon" item-start></ion-icon>\n      {{item.title}}\n      <div class="item-note" item-end>\n        {{item.note}}\n      </div>\n    </button>\n  </ion-list>\n  <div *ngIf="selectedItem" padding>\n    You navigated here from <b>{{selectedItem.title}}</b>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/pages/list/list.html"*/
+            selector: 'page-list',template:/*ion-inline-start:"/Users/aitch3/Workspace/O2Palm/test-pwa/src/pages/list/list.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>List</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      <ion-icon [name]="item.icon" item-start></ion-icon>\n      {{item.title}}\n      <div class="item-note" item-end>\n        {{item.note}}\n      </div>\n    </button>\n  </ion-list>\n  <div *ngIf="selectedItem" padding>\n    You navigated here from <b>{{selectedItem.title}}</b>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/aitch3/Workspace/O2Palm/test-pwa/src/pages/list/list.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
     ], ListPage);
     return ListPage;
     var ListPage_1;
@@ -459,5 +507,5 @@ var ListPage = /** @class */ (function () {
 
 /***/ })
 
-},[340]);
+},[342]);
 //# sourceMappingURL=main.js.map

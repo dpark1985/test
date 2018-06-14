@@ -19,8 +19,6 @@ export class CardPage {
 		public navCtrl: NavController,
 		public navParams: NavParams
 	) {
-		console.log(this.navParams.get('spaceid'));
-		console.log(this.navParams.get('cardid'));
 		this.route.setCurrentRoute({ name: 'card', spaceid: this.navParams.get('spaceid'), cardid: this.navParams.get('cardid') });
 	}
 

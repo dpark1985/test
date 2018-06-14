@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { RoutingService } from '../../services/routing-service';
 
 
 @IonicPage({
@@ -13,11 +14,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TodosPage {
 
-	constructor(public navCtrl: NavController, public navParams: NavParams) {
+	constructor(
+		public route: RoutingService,
+		public navCtrl: NavController, 
+		public navParams: NavParams,
+		public menuCtrl: MenuController
+	) {
+		this.route.setCurrentRoute({name: 'todos', spaceid: this.navParams.get('spaceid')});
 	}
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad TodosPage');
+	}
+
+	toggleMenu() {
+		this.menuCtrl.toggle('leftSideMenu');
 	}
 
 }

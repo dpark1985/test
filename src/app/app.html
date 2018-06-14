@@ -1,4 +1,4 @@
-<ion-split-pane>
+<ion-split-pane (ionChange)="ionChange($event)">
 	<ion-menu [content]="content" id="leftSideMenu" type="overlay">
 		<ion-header>
 			<ion-toolbar>
@@ -8,8 +8,8 @@
 	
 		<ion-content>
 			<ion-list>
-				<button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-					{{p.title}}
+				<button menuClose ion-item *ngFor="let s of spaces" (click)="changeSpace(s)">
+					{{s.title}}
 				</button>
 			</ion-list>
 		</ion-content>

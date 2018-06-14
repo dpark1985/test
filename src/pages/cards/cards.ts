@@ -19,14 +19,7 @@ export class CardsPage {
 		public navParams: NavParams,
 		public menuCtrl: MenuController
 	) {
-		console.log(this.navParams.get('spaceid'));
-		
-		this.route.cast.subscribe((route) => {
-			console.log('--current route---');
-			console.log(route);
-		})
 		this.route.setCurrentRoute({name: 'cards', spaceid: this.navParams.get('spaceid')});
-
 	}
 
 	ionViewDidLoad() {

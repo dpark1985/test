@@ -296,22 +296,29 @@ var MyApp = /** @class */ (function () {
         this.platform = platform;
         this.statusBar = statusBar;
         this.splashScreen = splashScreen;
+        this.spaces = [];
         this.initializeApp();
         // used for an example of ngFor and navigation
-        this.pages = [
-            { title: 'Cards', component: 'cards', params: { spaceid: '123' } },
-            { title: 'Card Details123', component: 'card', params: { spaceid: '123', cardid: '123' } },
-            { title: 'Card Details456', component: 'card', params: { spaceid: '123', cardid: '456' } },
-            { title: 'Card Details789', component: 'card', params: { spaceid: '123', cardid: '789' } },
-            { title: 'Schedules', component: 'schedules', params: { spaceid: '123' } },
-            { title: 'Schedule Details123', component: 'schedule', params: { spaceid: '123', scheduleid: '123' } },
-            { title: 'Schedule Details456', component: 'schedule', params: { spaceid: '123', scheduleid: '456' } },
-            { title: 'Schedule Details789', component: 'schedule', params: { spaceid: '123', scheduleid: '789' } },
-            { title: 'Todos', component: 'todos', params: { spaceid: '123' } },
-            { title: 'Todo Details123', component: 'todo', params: { spaceid: '123', todoid: '123' } },
-            { title: 'Todo Details456', component: 'todo', params: { spaceid: '123', todoid: '456' } },
-            { title: 'Todo Details789', component: 'todo', params: { spaceid: '123', todoid: '789' } },
-        ];
+        // this.pages = [
+        // 	{ title: 'Cards', component: 'cards', params: { spaceid: '123' } },
+        // 	{ title: 'Card Details123', component: 'card', params: { spaceid: '123', cardid: '123' } },
+        // 	{ title: 'Card Details456', component: 'card', params: { spaceid: '123', cardid: '456' } },
+        // 	{ title: 'Card Details789', component: 'card', params: { spaceid: '123', cardid: '789' } },
+        // 	{ title: 'Schedules', component: 'schedules', params: { spaceid: '123' } },
+        // 	{ title: 'Schedule Details123', component: 'schedule', params: { spaceid: '123', scheduleid: '123' } },
+        // 	{ title: 'Schedule Details456', component: 'schedule', params: { spaceid: '123', scheduleid: '456' } },
+        // 	{ title: 'Schedule Details789', component: 'schedule', params: { spaceid: '123', scheduleid: '789' } },
+        // 	{ title: 'Todos', component: 'todos', params: { spaceid: '123' } },
+        // 	{ title: 'Todo Details123', component: 'todo', params: { spaceid: '123', todoid: '123' } },
+        // 	{ title: 'Todo Details456', component: 'todo', params: { spaceid: '123', todoid: '456' } },
+        // 	{ title: 'Todo Details789', component: 'todo', params: { spaceid: '123', todoid: '789' } },
+        // ];
+        for (var i = 0; i < 10; i++) {
+            this.spaces.push({
+                title: "Space-" + i,
+                spaceid: i.toString()
+            });
+        }
     }
     MyApp.prototype.initializeApp = function () {
         this.initializeNatives();
@@ -329,22 +336,31 @@ var MyApp = /** @class */ (function () {
     MyApp.prototype.initializePages = function () {
         this.rootPage = 'cards';
         this.rootParams = { spaceid: 'all' };
+        console.log(this.platform.is('cordova'));
+        console.log(this.platform.is('android'));
+        console.log(this.platform.is('ios'));
     };
-    MyApp.prototype.openPage = function (page) {
-        this.nav.push(page.component, page.params);
+    MyApp.prototype.changeSpace = function (space) {
+        console.log(space);
+    };
+    MyApp.prototype.ionChange = function (ev) {
+        console.log('----ion-change----');
+        console.log(ev);
+        console.log(ev._plt.is('cordova'));
+        console.log(ev._plt.is('android'));
+        console.log(ev._plt.is('ios'));
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Nav */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Nav */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Nav */]) === "function" && _a || Object)
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/o2palm/Workspace/001.Projects/snowpalm/Snowpalm4/src/app/app.html"*/'<ion-split-pane>\n	<ion-menu [content]="content" id="leftSideMenu" type="overlay">\n		<ion-header>\n			<ion-toolbar>\n				<ion-title>Menu</ion-title>\n			</ion-toolbar>\n		</ion-header>\n	\n		<ion-content>\n			<ion-list>\n				<button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n					{{p.title}}\n				</button>\n			</ion-list>\n		</ion-content>\n	\n	</ion-menu>\n	\n	<ion-nav [root]="rootPage" [rootParams]="rootParams" #content swipeBackEnabled="false" main></ion-nav>\n</ion-split-pane>\n'/*ion-inline-end:"/Users/o2palm/Workspace/001.Projects/snowpalm/Snowpalm4/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/app/app.html"*/'<ion-split-pane (ionChange)="ionChange($event)">\n	<ion-menu [content]="content" id="leftSideMenu" type="overlay">\n		<ion-header>\n			<ion-toolbar>\n				<ion-title>Menu</ion-title>\n			</ion-toolbar>\n		</ion-header>\n	\n		<ion-content>\n			<ion-list>\n				<button menuClose ion-item *ngFor="let s of spaces" (click)="changeSpace(s)">\n					{{s.title}}\n				</button>\n			</ion-list>\n		</ion-content>\n	\n	</ion-menu>\n	\n	<ion-nav [root]="rootPage" [rootParams]="rootParams" #content swipeBackEnabled="false" main></ion-nav>\n</ion-split-pane>\n'/*ion-inline-end:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/app/app.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _d || Object])
     ], MyApp);
     return MyApp;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=app.component.js.map
@@ -375,7 +391,7 @@ var HomePage = /** @class */ (function () {
     }
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/o2palm/Workspace/001.Projects/snowpalm/Snowpalm4/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <h3>Ionic Menu Starter</h3>\n\n  <p>\n    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.\n  </p>\n\n  <button ion-button secondary menuToggle>Toggle Menu</button>\n</ion-content>\n'/*ion-inline-end:"/Users/o2palm/Workspace/001.Projects/snowpalm/Snowpalm4/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <h3>Ionic Menu Starter</h3>\n\n  <p>\n    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.\n  </p>\n\n  <button ion-button secondary menuToggle>Toggle Menu</button>\n</ion-content>\n'/*ion-inline-end:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]])
     ], HomePage);
@@ -431,7 +447,7 @@ var ListPage = /** @class */ (function () {
     };
     ListPage = ListPage_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-list',template:/*ion-inline-start:"/Users/o2palm/Workspace/001.Projects/snowpalm/Snowpalm4/src/pages/list/list.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>List</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      <ion-icon [name]="item.icon" item-start></ion-icon>\n      {{item.title}}\n      <div class="item-note" item-end>\n        {{item.note}}\n      </div>\n    </button>\n  </ion-list>\n  <div *ngIf="selectedItem" padding>\n    You navigated here from <b>{{selectedItem.title}}</b>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/o2palm/Workspace/001.Projects/snowpalm/Snowpalm4/src/pages/list/list.html"*/
+            selector: 'page-list',template:/*ion-inline-start:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/pages/list/list.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>List</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      <ion-icon [name]="item.icon" item-start></ion-icon>\n      {{item.title}}\n      <div class="item-note" item-end>\n        {{item.note}}\n      </div>\n    </button>\n  </ion-list>\n  <div *ngIf="selectedItem" padding>\n    You navigated here from <b>{{selectedItem.title}}</b>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/pages/list/list.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
     ], ListPage);

@@ -16,12 +16,12 @@ export class CardPage {
 
 	constructor(
 		public route: RoutingService,
-		public navCtrl: NavController, 
+		public navCtrl: NavController,
 		public navParams: NavParams
 	) {
 		console.log(this.navParams.get('spaceid'));
 		console.log(this.navParams.get('cardid'));
-		this.route.setCurrentRoute({name: 'card', spaceid: this.navParams.get('spaceid'), cardid: this.navParams.get('cardid')});
+		this.route.setCurrentRoute({ name: 'card', spaceid: this.navParams.get('spaceid'), cardid: this.navParams.get('cardid') });
 	}
 
 	ionViewDidLoad() {
@@ -29,8 +29,8 @@ export class CardPage {
 	}
 
 	pop() {
-		this.route.setCurrentRoute({name: 'cards', spaceid: this.navParams.get('spaceid')});
-		this.navCtrl.pop();
+		this.route.setCurrentRoute({ name: 'cards', spaceid: this.navParams.get('spaceid') });
+		this.navCtrl.setRoot('cards', { spaceid: this.navParams.get('spaceid') }, { animate: true, direction: 'back' });
 	}
 
 }

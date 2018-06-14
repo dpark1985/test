@@ -10,9 +10,10 @@ import { RoutingService } from '../../services/routing-service';
 export class TabBarComponent {
 
 	tabs: any = [
-		{ title: 'Cards', component: 'cards', params: { spaceid: '123' } },
-		{ title: 'Schedules', component: 'schedules', params: { spaceid: '123' } },
-		{ title: 'Todos', component: 'todos', params: { spaceid: '123' } },
+		{ title: 'Cards', icon: 'albums' },
+		{ title: 'Schedules', icon: 'calendar' },
+		{ title: 'Todos', icon: 'checkbox-outline' },
+		{ title: 'News', icon: 'add-circle' },
 	]
 
 	constructor(

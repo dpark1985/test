@@ -102,9 +102,10 @@ var TabBarComponent = /** @class */ (function () {
         this.route = route;
         this.platform = platform;
         this.tabs = [
-            { title: 'Cards', component: 'cards', params: { spaceid: '123' } },
-            { title: 'Schedules', component: 'schedules', params: { spaceid: '123' } },
-            { title: 'Todos', component: 'todos', params: { spaceid: '123' } },
+            { title: 'Cards', icon: 'albums' },
+            { title: 'Schedules', icon: 'calendar' },
+            { title: 'Todos', icon: 'checkbox-outline' },
+            { title: 'News', icon: 'add-circle' },
         ];
         console.log('Hello TabBarComponent Component');
         // this.tabs.push()
@@ -116,12 +117,12 @@ var TabBarComponent = /** @class */ (function () {
     }
     TabBarComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'tab-bar',template:/*ion-inline-start:"/Users/o2palm/Workspace/001.Projects/snowpalm/Snowpalm4/src/components/tab-bar/tab-bar.html"*/'<div class="tabNavbar">\n	<ion-grid no-padding>\n		<ion-row>\n			<ion-col no-padding>\n\n			</ion-col>\n			<ion-col no-padding>\n\n			</ion-col>\n			<ion-col no-padding>\n\n			</ion-col>\n			<ion-col no-padding>\n\n			</ion-col>\n\n		</ion-row>\n	</ion-grid>\n</div>'/*ion-inline-end:"/Users/o2palm/Workspace/001.Projects/snowpalm/Snowpalm4/src/components/tab-bar/tab-bar.html"*/
+            selector: 'tab-bar',template:/*ion-inline-start:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/components/tab-bar/tab-bar.html"*/'<div class="tabNavbar">\n	<ion-grid no-padding>\n		<ion-row>\n			<ion-col no-padding *ngFor="let tab of tabs">\n				<button ion-button icon-only (click)="openPage(tab)">\n					<ion-icon [name]="tab.icon"></ion-icon>\n				</button>\n			</ion-col>\n			<ion-col no-padding>\n\n			</ion-col>\n			<ion-col no-padding>\n\n			</ion-col>\n			<ion-col no-padding>\n\n			</ion-col>\n\n		</ion-row>\n	</ion-grid>\n</div>'/*ion-inline-end:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/components/tab-bar/tab-bar.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_routing_service__["a" /* RoutingService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_routing_service__["a" /* RoutingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_routing_service__["a" /* RoutingService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */]) === "function" && _b || Object])
     ], TabBarComponent);
     return TabBarComponent;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=tab-bar.js.map
@@ -156,7 +157,7 @@ var FilesPage = /** @class */ (function () {
     };
     FilesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-files',template:/*ion-inline-start:"/Users/o2palm/Workspace/001.Projects/snowpalm/Snowpalm4/src/pages/files/files.html"*/'<!--\n  Generated template for the FilesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>files</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/o2palm/Workspace/001.Projects/snowpalm/Snowpalm4/src/pages/files/files.html"*/,
+            selector: 'page-files',template:/*ion-inline-start:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/pages/files/files.html"*/'<!--\n  Generated template for the FilesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>files</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/pages/files/files.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
     ], FilesPage);

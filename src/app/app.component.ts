@@ -14,7 +14,7 @@ export class MyApp {
 	rootPage: any;
 	rootParams: any;
 
-	pages: Array<{ title: string, component: any, params: object }>;
+	spaces: Array<{ title: string, spaceid: string }> = [];
 
 	constructor(
 		public platform: Platform, 
@@ -24,22 +24,33 @@ export class MyApp {
 		this.initializeApp();
 
 		// used for an example of ngFor and navigation
-		this.pages = [
-			{ title: 'Cards', component: 'cards', params: { spaceid: '123' } },
-			{ title: 'Card Details123', component: 'card', params: { spaceid: '123', cardid: '123' } },
-			{ title: 'Card Details456', component: 'card', params: { spaceid: '123', cardid: '456' } },
-			{ title: 'Card Details789', component: 'card', params: { spaceid: '123', cardid: '789' } },
+		// this.pages = [
+		// 	{ title: 'Cards', component: 'cards', params: { spaceid: '123' } },
+		// 	{ title: 'Card Details123', component: 'card', params: { spaceid: '123', cardid: '123' } },
+		// 	{ title: 'Card Details456', component: 'card', params: { spaceid: '123', cardid: '456' } },
+		// 	{ title: 'Card Details789', component: 'card', params: { spaceid: '123', cardid: '789' } },
 
-			{ title: 'Schedules', component: 'schedules', params: { spaceid: '123' } },
-			{ title: 'Schedule Details123', component: 'schedule', params: { spaceid: '123', scheduleid: '123' } },
-			{ title: 'Schedule Details456', component: 'schedule', params: { spaceid: '123', scheduleid: '456' } },
-			{ title: 'Schedule Details789', component: 'schedule', params: { spaceid: '123', scheduleid: '789' } },
+		// 	{ title: 'Schedules', component: 'schedules', params: { spaceid: '123' } },
+		// 	{ title: 'Schedule Details123', component: 'schedule', params: { spaceid: '123', scheduleid: '123' } },
+		// 	{ title: 'Schedule Details456', component: 'schedule', params: { spaceid: '123', scheduleid: '456' } },
+		// 	{ title: 'Schedule Details789', component: 'schedule', params: { spaceid: '123', scheduleid: '789' } },
 
-			{ title: 'Todos', component: 'todos', params: { spaceid: '123' } },
-			{ title: 'Todo Details123', component: 'todo', params: { spaceid: '123', todoid: '123' } },
-			{ title: 'Todo Details456', component: 'todo', params: { spaceid: '123', todoid: '456' } },
-			{ title: 'Todo Details789', component: 'todo', params: { spaceid: '123', todoid: '789' } },
-		];
+		// 	{ title: 'Todos', component: 'todos', params: { spaceid: '123' } },
+		// 	{ title: 'Todo Details123', component: 'todo', params: { spaceid: '123', todoid: '123' } },
+		// 	{ title: 'Todo Details456', component: 'todo', params: { spaceid: '123', todoid: '456' } },
+		// 	{ title: 'Todo Details789', component: 'todo', params: { spaceid: '123', todoid: '789' } },
+
+
+
+		// ];
+
+
+		for(let i=0; i<10; i++) {
+			this.spaces.push({
+				title: `Space-${i}`,
+				spaceid: i.toString()
+			});
+		}
 	}
 
 	initializeApp() {
@@ -59,9 +70,25 @@ export class MyApp {
 	initializePages() {
 		this.rootPage = 'cards';
 		this.rootParams = {spaceid: 'all'};
+
+
+		console.log(this.platform.is('cordova'));
+		console.log(this.platform.is('android'));
+		console.log(this.platform.is('ios'));
 	}
 
-	openPage(page) {
-		this.nav.push(page.component, page.params);
+	changeSpace(space) {
+		/**
+		 * need to add spaceservice
+		 */
+		console.log(space);
+	}
+
+	ionChange(ev: any) {
+		console.log('----ion-change----');
+		console.log(ev);
+		console.log(ev._plt.is('cordova'));
+		console.log(ev._plt.is('android'));
+		console.log(ev._plt.is('ios'));
 	}
 }

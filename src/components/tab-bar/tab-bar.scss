@@ -1,0 +1,12 @@
+tab-bar {
+    position: absolute;
+    bottom: 50px;
+    width: 100%;
+    
+    .tabNavbar {
+        width: 50%;
+        height: 50px;
+        background-color: red;
+        margin: 0 auto;
+    }
+}

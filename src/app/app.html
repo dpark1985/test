@@ -1,0 +1,20 @@
+<ion-split-pane>
+	<ion-menu [content]="content" id="leftSideMenu" type="overlay">
+		<ion-header>
+			<ion-toolbar>
+				<ion-title>Menu</ion-title>
+			</ion-toolbar>
+		</ion-header>
+	
+		<ion-content>
+			<ion-list>
+				<button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+					{{p.title}}
+				</button>
+			</ion-list>
+		</ion-content>
+	
+	</ion-menu>
+	
+	<ion-nav [root]="rootPage" [rootParams]="rootParams" #content swipeBackEnabled="false" main></ion-nav>
+</ion-split-pane>

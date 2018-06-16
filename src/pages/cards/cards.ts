@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController, Platform } from 'ionic-angular';
 import { RoutingService } from '../../services/routing-service';
 import { SpaceService } from '../../services/space-service';
+import { SystemService } from '../../services/system-service';
 
 @IonicPage({
 	name: 'cards',
@@ -28,6 +29,7 @@ export class CardsPage {
 	];
 
 	constructor(
+		public sys: SystemService,
 		public platform: Platform,
 		public spaceService: SpaceService,
 		public route: RoutingService,

@@ -1,11 +1,13 @@
-<div class="tabNavbar">
-	<ion-grid no-padding>
-		<ion-row>
-			<ion-col no-padding *ngFor="let tab of tabs">
-				<button ion-button icon-only (click)="openPage(tab)">
-					<ion-icon [name]="tab.icon"></ion-icon>
-				</button>
-			</ion-col>
-		</ion-row>
-	</ion-grid>
-</div>
+<ng-container *ngIf="sys.deviceCast | async as device">
+	<div class="tabNavbar" *ngIf="!device.core">
+		<ion-grid no-padding>
+			<ion-row>
+				<ion-col no-padding *ngFor="let tab of tabs">
+					<button ion-button icon-only (click)="openPage(tab)">
+						<ion-icon [name]="tab.icon"></ion-icon>
+					</button>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</div>
+</ng-container>

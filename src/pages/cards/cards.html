@@ -1,15 +1,18 @@
-<ion-header>
+<ng-container *ngIf="sys.deviceCast | async as device">
+	<ion-header *ngIf="!device.core">
 
-	<ion-navbar>
-		<ion-buttons left>
-			<button ion-button icon-only (click)="toggleMenu()">
-				<ion-icon name="menu"></ion-icon>
-			</button>
-		</ion-buttons>
-		<ion-title>cards</ion-title>
-	</ion-navbar>
+		<ion-navbar>
+			<ion-buttons left>
+				<button ion-button icon-only (click)="toggleMenu()">
+					<ion-icon name="menu"></ion-icon>
+				</button>
+			</ion-buttons>
+			<ion-title>cards</ion-title>
+		</ion-navbar>
 
-</ion-header>
+	</ion-header>
+</ng-container>
+
 
 
 <ion-content>

@@ -25684,6 +25684,18 @@ ion-navbar.toolbar {
   width: 100%;
 }
 
+.pwa-left-menu-width {
+  max-width: 270px !important;
+}
+
+.nav-content-left {
+  max-width: 270px;
+}
+
+.nav-content-right {
+  max-width: 270px;
+}
+
 tab-bar {
   position: absolute;
   bottom: 50px;
@@ -25691,7 +25703,7 @@ tab-bar {
 }
 
 tab-bar .tabNavbar {
-  width: 50%;
+  width: 70%;
   height: 50px;
   background-color: red;
   margin: 0 auto;

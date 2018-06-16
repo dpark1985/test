@@ -3,6 +3,7 @@ import { Events } from 'ionic-angular';
 
 import { RoutingService } from '../../services/routing-service';
 import { SpaceService } from '../../services/space-service';
+import { SystemService } from '../../services/system-service';
 
 @Component({
 	selector: 'tab-bar',
@@ -20,6 +21,7 @@ export class TabBarComponent {
 	private routing: any;
 
 	constructor(
+		public sys: SystemService,
 		public events: Events,
 		public spaceService: SpaceService,
 		public route: RoutingService
@@ -35,7 +37,7 @@ export class TabBarComponent {
 		this.spaceService.cast.first().subscribe((space: any) => {
 			if(tab.title === 'new') {
 				this.events.publish('newItem', {
-					name: this.routing && this.routing.name ? this.routing.name : 'card',
+					name: this.routing && this.routing.name ? this.routing.name : 'cards',
 					spaceid: space && space.spaceid ? space.spaceid : 'all',
 					id: tab.title
 				});

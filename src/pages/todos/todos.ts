@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { RoutingService } from '../../services/routing-service';
 import { SpaceService } from '../../services/space-service';
-
+import { SystemService } from '../../services/system-service';
 
 @IonicPage({
 	name: 'todos',
@@ -29,6 +29,7 @@ export class TodosPage {
 	];
 
 	constructor(
+		public sys: SystemService,
 		public spaceService: SpaceService,
 		public route: RoutingService,
 		public navCtrl: NavController, 

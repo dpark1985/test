@@ -10,6 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { RoutingService } from '../services/routing-service';
 import { SpaceService } from '../services/space-service';
+import { SystemServiceProvider } from '../providers/system-service/system-service';
 
 @NgModule({
 	declarations: [
@@ -34,7 +35,8 @@ import { SpaceService } from '../services/space-service';
 		SplashScreen,
 		{ provide: ErrorHandler, useClass: IonicErrorHandler },
 		RoutingService,
-		SpaceService
+		SpaceService,
+    SystemServiceProvider
 	]
 })
 export class AppModule { }

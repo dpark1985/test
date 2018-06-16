@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { RoutingService } from '../../../services/routing-service';
 
 
 @IonicPage({
-	name: 'card',
-	segment: 'cards/:spaceid/:cardid',
+	name: 'cards-item',
+	segment: 'cards/:spaceid/:id',
 	defaultHistory: ['cards']
 })
 @Component({
@@ -15,11 +15,18 @@ import { RoutingService } from '../../../services/routing-service';
 export class CardPage {
 
 	constructor(
+		public platform: Platform,
 		public route: RoutingService,
 		public navCtrl: NavController,
 		public navParams: NavParams
 	) {
-		this.route.setCurrentRoute({ name: 'card', spaceid: this.navParams.get('spaceid'), cardid: this.navParams.get('cardid') });
+		this.route.cast.first().subscribe((route: any) => {
+			if(route === null && this.navParams.get('id') === 'new') {
+				this.pop();
+			} else {
+				this.route.setCurrentRoute({ name: 'cards-item', spaceid: this.navParams.get('spaceid'), id: this.navParams.get('id') });
+			}
+		});
 	}
 
 	ionViewDidLoad() {

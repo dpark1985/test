@@ -13,5 +13,10 @@
 
 
 <ion-content>
+	<ion-list>
+		<button ion-item *ngFor="let item of temp" (click)="itemSelected(item)">
+			todo-{{ item.title }}
+		</button>
+	</ion-list>
 	<tab-bar></tab-bar>
 </ion-content>

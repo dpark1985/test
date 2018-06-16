@@ -61,25 +61,38 @@ export class MyApp {
 
 	initializeEvents() {
 		this.events.subscribe('setRoot', (options: any) => {
+			this.route.setCurrentRoute({ name: options.name, spaceid: options.spaceid });
 			this.nav.setRoot(options.name, { spaceid: options.spaceid });
+		});
+
+		this.events.subscribe('newItem', (options: any) => {
+			this.nav.push( options.name + '-item', {
+				spaceid: options.spaceid,
+				id: options.id
+			});
 		});
 	}
 
 	changeSpace(space) {
 		this.route.cast.first().subscribe((route: any) => {
+			let name = '';
+			if (route !== null && route.name) {
+				name = route.name.split('-')[0];
+			} else {
+				name = 'cards'
+			}
 			this.spaceService.setCurrentSpace(space);
-			this.route.setCurrentRoute({ name: route.name, spaceid: space.spaceid });
-			this.nav.setRoot(route.name, { spaceid: space.spaceid });
+			this.route.setCurrentRoute({ name: name, spaceid: space.spaceid });
+			this.nav.setRoot(name, { spaceid: space.spaceid });
 		});
 	}
 
 
 
 	ionChange(ev: any) {
-		// console.log('----ion-change----');
-		// console.log(ev);
-		// console.log(ev._plt.is('cordova'));
-		// console.log(ev._plt.is('android'));
-		// console.log(ev._plt.is('ios'));
+		console.log('-------');
+		console.log(ev);
+		console.log(ev._plt.is('ios'));
+		console.log(ev._plt.is('android'));
 	}
 }

@@ -109,19 +109,24 @@ var TabBarComponent = /** @class */ (function () {
             { title: 'cards', icon: 'albums' },
             { title: 'schedules', icon: 'calendar' },
             { title: 'todos', icon: 'checkbox-outline' },
-            { title: 'news', icon: 'add-circle' },
+            { title: 'new', icon: 'add-circle' },
         ];
         console.log('Hello TabBarComponent Component');
         this.route.cast.subscribe(function (route) {
             _this.routing = route;
-            console.log('--tabbar route---');
-            console.log(_this.routing);
         });
     }
     TabBarComponent.prototype.openPage = function (tab) {
         var _this = this;
         this.spaceService.cast.first().subscribe(function (space) {
-            if (_this.routing.name !== tab.title) {
+            if (tab.title === 'new') {
+                _this.events.publish('newItem', {
+                    name: _this.routing && _this.routing.name ? _this.routing.name : 'card',
+                    spaceid: space && space.spaceid ? space.spaceid : 'all',
+                    id: tab.title
+                });
+            }
+            else {
                 _this.events.publish('setRoot', {
                     name: tab.title,
                     spaceid: space && space.spaceid ? space.spaceid : 'all'
@@ -133,10 +138,11 @@ var TabBarComponent = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'tab-bar',template:/*ion-inline-start:"/Users/aitch3/Workspace/O2Palm/test-pwa/src/components/tab-bar/tab-bar.html"*/'<div class="tabNavbar">\n	<ion-grid no-padding>\n		<ion-row>\n			<ion-col no-padding *ngFor="let tab of tabs">\n				<button ion-button icon-only (click)="openPage(tab)">\n					<ion-icon [name]="tab.icon"></ion-icon>\n				</button>\n			</ion-col>\n		</ion-row>\n	</ion-grid>\n</div>'/*ion-inline-end:"/Users/aitch3/Workspace/O2Palm/test-pwa/src/components/tab-bar/tab-bar.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Events */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_space_service__["a" /* SpaceService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_space_service__["a" /* SpaceService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_routing_service__["a" /* RoutingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_routing_service__["a" /* RoutingService */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_3__services_space_service__["a" /* SpaceService */],
+            __WEBPACK_IMPORTED_MODULE_2__services_routing_service__["a" /* RoutingService */]])
     ], TabBarComponent);
     return TabBarComponent;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=tab-bar.js.map
@@ -151,6 +157,7 @@ var TabBarComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_routing_service__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_space_service__ = __webpack_require__(148);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -163,13 +170,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var SchedulesPage = /** @class */ (function () {
-    function SchedulesPage(route, navCtrl, navParams, menuCtrl) {
+    function SchedulesPage(spaceService, route, navCtrl, navParams, menuCtrl) {
+        this.spaceService = spaceService;
         this.route = route;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.menuCtrl = menuCtrl;
-        this.route.setCurrentRoute({ name: 'schedules', spaceid: this.navParams.get('spaceid') });
+        this.temp = [
+            { id: '1', title: '1' },
+            { id: '2', title: '2' },
+            { id: '3', title: '3' },
+            { id: '4', title: '4' },
+            { id: '5', title: '5' },
+            { id: '6', title: '6' },
+            { id: '7', title: '7' },
+            { id: '8', title: '8' },
+            { id: '9', title: '9' },
+            { id: '10', title: '10' },
+        ];
     }
     SchedulesPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad SchedulesPage');
@@ -177,11 +197,21 @@ var SchedulesPage = /** @class */ (function () {
     SchedulesPage.prototype.toggleMenu = function () {
         this.menuCtrl.toggle('leftSideMenu');
     };
+    SchedulesPage.prototype.itemSelected = function (item) {
+        var _this = this;
+        this.spaceService.cast.first().subscribe(function (space) {
+            _this.navCtrl.push('schedules-item', {
+                spaceid: space && space.spaceid ? space.spaceid : 'all',
+                id: item.id
+            });
+        });
+    };
     SchedulesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-schedules',template:/*ion-inline-start:"/Users/aitch3/Workspace/O2Palm/test-pwa/src/pages/schedules/schedules.html"*/'<ion-header>\n\n	<ion-navbar>\n		<ion-buttons left>\n			<button ion-button icon-only (click)="toggleMenu()">\n				<ion-icon name="menu"></ion-icon>\n			</button>\n		</ion-buttons>\n		<ion-title>schedules</ion-title>\n	</ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n	<tab-bar></tab-bar>\n</ion-content>'/*ion-inline-end:"/Users/aitch3/Workspace/O2Palm/test-pwa/src/pages/schedules/schedules.html"*/,
+            selector: 'page-schedules',template:/*ion-inline-start:"/Users/aitch3/Workspace/O2Palm/test-pwa/src/pages/schedules/schedules.html"*/'<ion-header>\n\n	<ion-navbar>\n		<ion-buttons left>\n			<button ion-button icon-only (click)="toggleMenu()">\n				<ion-icon name="menu"></ion-icon>\n			</button>\n		</ion-buttons>\n		<ion-title>schedules</ion-title>\n	</ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n	<ion-list>\n		<button ion-item *ngFor="let item of temp" (click)="itemSelected(item)">\n			schedule-{{ item.title }}\n		</button>\n	</ion-list>\n	<tab-bar></tab-bar>\n</ion-content>'/*ion-inline-end:"/Users/aitch3/Workspace/O2Palm/test-pwa/src/pages/schedules/schedules.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_routing_service__["a" /* RoutingService */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_space_service__["a" /* SpaceService */],
+            __WEBPACK_IMPORTED_MODULE_2__services_routing_service__["a" /* RoutingService */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* MenuController */]])

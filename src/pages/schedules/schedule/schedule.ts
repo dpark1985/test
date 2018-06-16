@@ -4,8 +4,8 @@ import { RoutingService } from '../../../services/routing-service';
 
 
 @IonicPage({
-	name: 'schedule',
-	segment: 'schedules/:spaceid/:scheduleid',
+	name: 'schedules-item',
+	segment: 'schedules/:spaceid/:id',
 	defaultHistory: ['schedules']
 })
 @Component({
@@ -19,7 +19,13 @@ export class SchedulePage {
 		public navCtrl: NavController,
 		public navParams: NavParams
 	) {
-		this.route.setCurrentRoute({ name: 'schedule', spaceid: this.navParams.get('spaceid'), scheduleid: this.navParams.get('scheduleid') });
+		this.route.cast.first().subscribe((route: any) => {
+			if(route === null && this.navParams.get('id') === 'new') {
+				this.pop();
+			} else {
+				this.route.setCurrentRoute({ name: 'schedules-item', spaceid: this.navParams.get('spaceid'), id: this.navParams.get('id') });
+			}
+		});
 	}
 
 	ionViewDidLoad() {

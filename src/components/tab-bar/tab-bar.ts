@@ -14,7 +14,7 @@ export class TabBarComponent {
 		{ title: 'cards', icon: 'albums' },
 		{ title: 'schedules', icon: 'calendar' },
 		{ title: 'todos', icon: 'checkbox-outline' },
-		{ title: 'news', icon: 'add-circle' },
+		{ title: 'new', icon: 'add-circle' },
 	];
 
 	private routing: any;
@@ -28,14 +28,18 @@ export class TabBarComponent {
 
 		this.route.cast.subscribe((route) => {
 			this.routing = route;
-			console.log('--tabbar route---');
-			console.log(this.routing);
 		});
 	}
 
-	openPage(tab) {
+	openPage(tab: any) {
 		this.spaceService.cast.first().subscribe((space: any) => {
-			if(this.routing.name !== tab.title) {
+			if(tab.title === 'new') {
+				this.events.publish('newItem', {
+					name: this.routing && this.routing.name ? this.routing.name : 'card',
+					spaceid: space && space.spaceid ? space.spaceid : 'all',
+					id: tab.title
+				});
+			} else {
 				this.events.publish('setRoot', { 
 					name: tab.title, 
 					spaceid: space && space.spaceid ? space.spaceid : 'all'

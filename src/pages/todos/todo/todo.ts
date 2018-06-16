@@ -4,8 +4,8 @@ import { RoutingService } from '../../../services/routing-service';
 
 
 @IonicPage({
-	name: 'todo',
-	segment: 'todos/:spaceid/:todoid',
+	name: 'todos-item',
+	segment: 'todos/:spaceid/:id',
 	defaultHistory: ['todos']
 })
 @Component({
@@ -19,7 +19,13 @@ export class TodoPage {
 		public navCtrl: NavController, 
 		public navParams: NavParams
 	) {
-		this.route.setCurrentRoute({ name: 'todo', spaceid: this.navParams.get('spaceid'), todoid: this.navParams.get('cardid') });
+		this.route.cast.first().subscribe((route: any) => {
+			if(route === null && this.navParams.get('id') === 'new') {
+				this.pop();
+			} else {
+				this.route.setCurrentRoute({ name: 'todos-item', spaceid: this.navParams.get('spaceid'), id: this.navParams.get('id') });
+			}
+		});
 	}
 
 	ionViewDidLoad() {

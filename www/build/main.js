@@ -268,11 +268,11 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/account-settings/account-settings.module#AccountSettingsPageModule', name: 'account-settings', segment: 'account-settings', priority: 'high', defaultHistory: [] },
                         { loadChildren: '../pages/cards/card-history/card-history.module#CardHistoryPageModule', name: 'card-history', segment: 'cards/:spaceid/:cardid/history', priority: 'low', defaultHistory: ['cards'] },
                         { loadChildren: '../pages/cards/card-unread/card-unread.module#CardUnreadPageModule', name: 'card-unread', segment: 'cards/:spaceid/:cardid/unread', priority: 'low', defaultHistory: ['cards'] },
-                        { loadChildren: '../pages/cards/card/card.module#CardPageModule', name: 'card', segment: 'cards/:spaceid/:cardid', priority: 'low', defaultHistory: ['cards'] },
+                        { loadChildren: '../pages/cards/card/card.module#CardPageModule', name: 'cards-item', segment: 'cards/:spaceid/:id', priority: 'low', defaultHistory: ['cards'] },
                         { loadChildren: '../pages/cards/cards.module#CardsPageModule', name: 'cards', segment: 'cards/:spaceid', priority: 'high', defaultHistory: [] },
                         { loadChildren: '../pages/files/files.module#FilesPageModule', name: 'files', segment: 'files/:spaceid', priority: 'high', defaultHistory: [] },
                         { loadChildren: '../pages/interlinks/interlinks.module#InterlinksPageModule', name: 'InterlinksPage', segment: 'interlinks', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/schedules/schedule/schedule.module#SchedulePageModule', name: 'schedule', segment: 'schedules/:spaceid/:scheduleid', priority: 'low', defaultHistory: ['schedules'] },
+                        { loadChildren: '../pages/schedules/schedule/schedule.module#SchedulePageModule', name: 'schedules-item', segment: 'schedules/:spaceid/:id', priority: 'low', defaultHistory: ['schedules'] },
                         { loadChildren: '../pages/schedules/schedules.module#SchedulesPageModule', name: 'schedules', segment: 'schedules/:spaceid', priority: 'high', defaultHistory: [] },
                         { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'settings', segment: 'settings', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/settings/software-information/software-information.module#SoftwareInformationPageModule', name: 'software-information', segment: 'software-information', priority: 'low', defaultHistory: [] },
@@ -283,7 +283,7 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/space-settings/space-members/space-members.module#SpaceMembersPageModule', name: 'space-members', segment: 'space-settings/:spaceid/members', priority: 'low', defaultHistory: ['space-settings'] },
                         { loadChildren: '../pages/space-settings/space-settings.module#SpaceSettingsPageModule', name: 'space-settings', segment: 'space-settings/:spaceid', priority: 'high', defaultHistory: [] },
                         { loadChildren: '../pages/space-settings/space-storage/space-storage.module#SpaceStoragePageModule', name: 'space-storage', segment: 'space-settings/:spaceid/storage', priority: 'low', defaultHistory: ['space-settings'] },
-                        { loadChildren: '../pages/todos/todo/todo.module#TodoPageModule', name: 'todo', segment: 'todos/:spaceid/:todoid', priority: 'low', defaultHistory: ['todos'] },
+                        { loadChildren: '../pages/todos/todo/todo.module#TodoPageModule', name: 'todos-item', segment: 'todos/:spaceid/:id', priority: 'low', defaultHistory: ['todos'] },
                         { loadChildren: '../pages/todos/todos.module#TodosPageModule', name: 'todos', segment: 'todos/:spaceid', priority: 'high', defaultHistory: [] }
                     ]
                 }),
@@ -376,39 +376,48 @@ var MyApp = /** @class */ (function () {
     MyApp.prototype.initializeEvents = function () {
         var _this = this;
         this.events.subscribe('setRoot', function (options) {
+            _this.route.setCurrentRoute({ name: options.name, spaceid: options.spaceid });
             _this.nav.setRoot(options.name, { spaceid: options.spaceid });
+        });
+        this.events.subscribe('newItem', function (options) {
+            _this.nav.push(options.name + '-item', {
+                spaceid: options.spaceid,
+                id: options.id
+            });
         });
     };
     MyApp.prototype.changeSpace = function (space) {
         var _this = this;
         this.route.cast.first().subscribe(function (route) {
+            var name = '';
+            if (route !== null && route.name) {
+                name = route.name.split('-')[0];
+            }
+            else {
+                name = 'cards';
+            }
             _this.spaceService.setCurrentSpace(space);
-            _this.route.setCurrentRoute({ name: route.name, spaceid: space.spaceid });
-            _this.nav.setRoot(route.name, { spaceid: space.spaceid });
+            _this.route.setCurrentRoute({ name: name, spaceid: space.spaceid });
+            _this.nav.setRoot(name, { spaceid: space.spaceid });
         });
     };
     MyApp.prototype.ionChange = function (ev) {
-        // console.log('----ion-change----');
-        // console.log(ev);
-        // console.log(ev._plt.is('cordova'));
-        // console.log(ev._plt.is('android'));
-        // console.log(ev._plt.is('ios'));
+        console.log('-------');
+        console.log(ev);
+        console.log(ev._plt.is('ios'));
+        console.log(ev._plt.is('android'));
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */]) === "function" && _a || Object)
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/aitch3/Workspace/O2Palm/test-pwa/src/app/app.html"*/'<ion-split-pane (ionChange)="ionChange($event)">\n	<ion-menu [content]="content" id="leftSideMenu" type="overlay">\n		<ion-header>\n			<ion-toolbar>\n				<ion-title>Menu</ion-title>\n			</ion-toolbar>\n		</ion-header>\n	\n		<ion-content>\n			<ion-list>\n				<button menuClose ion-item *ngFor="let s of spaces" (click)="changeSpace(s)">\n					{{s.title}}\n				</button>\n			</ion-list>\n		</ion-content>\n	\n	</ion-menu>\n	\n	<ion-nav [root]="rootPage" [rootParams]="rootParams" #content swipeBackEnabled="false" main></ion-nav>\n</ion-split-pane>\n'/*ion-inline-end:"/Users/aitch3/Workspace/O2Palm/test-pwa/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/aitch3/Workspace/O2Palm/test-pwa/src/app/app.html"*/'<ion-toolbar color="primary" *ngIf="!platform.is(\'android\') || !platform.is(\'ios\')">\n	<ion-title>Test</ion-title>\n</ion-toolbar>\n<ion-split-pane (ionChange)="ionChange($event)">\n	<ion-menu [content]="content" id="leftSideMenu" type="overlay">\n		<ion-header>\n			<ion-toolbar>\n				<ion-title>Menu</ion-title>\n			</ion-toolbar>\n		</ion-header>\n	\n		<ion-content>\n			<ion-list>\n				<button menuClose ion-item *ngFor="let s of spaces" (click)="changeSpace(s)">\n					{{s.title}}\n				</button>\n			</ion-list>\n		</ion-content>\n	\n	</ion-menu>\n	\n	<ion-nav [root]="rootPage" [rootParams]="rootParams" #content swipeBackEnabled="false" main></ion-nav>\n</ion-split-pane>\n'/*ion-inline-end:"/Users/aitch3/Workspace/O2Palm/test-pwa/src/app/app.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Events */],
-            __WEBPACK_IMPORTED_MODULE_4__services_routing_service__["a" /* RoutingService */],
-            __WEBPACK_IMPORTED_MODULE_5__services_space_service__["a" /* SpaceService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Events */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__services_routing_service__["a" /* RoutingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_routing_service__["a" /* RoutingService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__services_space_service__["a" /* SpaceService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_space_service__["a" /* SpaceService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _g || Object])
     ], MyApp);
     return MyApp;
+    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 //# sourceMappingURL=app.component.js.map

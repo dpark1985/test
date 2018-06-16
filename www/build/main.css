@@ -25678,6 +25678,12 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+.split-pane {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
 tab-bar {
   position: absolute;
   bottom: 50px;

@@ -109,19 +109,24 @@ var TabBarComponent = /** @class */ (function () {
             { title: 'cards', icon: 'albums' },
             { title: 'schedules', icon: 'calendar' },
             { title: 'todos', icon: 'checkbox-outline' },
-            { title: 'news', icon: 'add-circle' },
+            { title: 'new', icon: 'add-circle' },
         ];
         console.log('Hello TabBarComponent Component');
         this.route.cast.subscribe(function (route) {
             _this.routing = route;
-            console.log('--tabbar route---');
-            console.log(_this.routing);
         });
     }
     TabBarComponent.prototype.openPage = function (tab) {
         var _this = this;
         this.spaceService.cast.first().subscribe(function (space) {
-            if (_this.routing.name !== tab.title) {
+            if (tab.title === 'new') {
+                _this.events.publish('newItem', {
+                    name: _this.routing && _this.routing.name ? _this.routing.name : 'card',
+                    spaceid: space && space.spaceid ? space.spaceid : 'all',
+                    id: tab.title
+                });
+            }
+            else {
                 _this.events.publish('setRoot', {
                     name: tab.title,
                     spaceid: space && space.spaceid ? space.spaceid : 'all'
@@ -133,10 +138,11 @@ var TabBarComponent = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'tab-bar',template:/*ion-inline-start:"/Users/aitch3/Workspace/O2Palm/test-pwa/src/components/tab-bar/tab-bar.html"*/'<div class="tabNavbar">\n	<ion-grid no-padding>\n		<ion-row>\n			<ion-col no-padding *ngFor="let tab of tabs">\n				<button ion-button icon-only (click)="openPage(tab)">\n					<ion-icon [name]="tab.icon"></ion-icon>\n				</button>\n			</ion-col>\n		</ion-row>\n	</ion-grid>\n</div>'/*ion-inline-end:"/Users/aitch3/Workspace/O2Palm/test-pwa/src/components/tab-bar/tab-bar.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Events */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_space_service__["a" /* SpaceService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_space_service__["a" /* SpaceService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_routing_service__["a" /* RoutingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_routing_service__["a" /* RoutingService */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_3__services_space_service__["a" /* SpaceService */],
+            __WEBPACK_IMPORTED_MODULE_2__services_routing_service__["a" /* RoutingService */]])
     ], TabBarComponent);
     return TabBarComponent;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=tab-bar.js.map
@@ -165,10 +171,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var TodoPage = /** @class */ (function () {
     function TodoPage(route, navCtrl, navParams) {
+        var _this = this;
         this.route = route;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.route.setCurrentRoute({ name: 'todo', spaceid: this.navParams.get('spaceid'), todoid: this.navParams.get('cardid') });
+        this.route.cast.first().subscribe(function (route) {
+            if (route === null && _this.navParams.get('id') === 'new') {
+                _this.pop();
+            }
+            else {
+                _this.route.setCurrentRoute({ name: 'todos-item', spaceid: _this.navParams.get('spaceid'), id: _this.navParams.get('id') });
+            }
+        });
     }
     TodoPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad TodoPage');

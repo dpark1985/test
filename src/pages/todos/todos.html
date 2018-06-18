@@ -1,24 +1,24 @@
 <ng-container *ngIf="sys.deviceCast | async as device">
-		<ion-header *ngIf="!device.core">
-	
-			<ion-navbar>
-				<ion-buttons left>
-					<button ion-button icon-only (click)="toggleMenu()">
-						<ion-icon name="menu"></ion-icon>
-					</button>
-				</ion-buttons>
-				<ion-title>todos</ion-title>
-			</ion-navbar>
-	
-		</ion-header>
-	</ng-container>
+	<ion-header *ngIf="!device.core">
+
+		<ion-navbar>
+			<ion-buttons left>
+				<button ion-button icon-only (click)="toggleMenu()">
+					<ion-icon name="menu"></ion-icon>
+				</button>
+			</ion-buttons>
+			<ion-title>todos</ion-title>
+		</ion-navbar>
+
+	</ion-header>
+</ng-container>
 
 
 <ion-content>
 	<ion-list>
 		<button ion-item *ngFor="let item of temp" (click)="itemSelected(item)">
-			todo-{{ item.title }}
+			todo-{{space.title}}-{{ item.title }}
 		</button>
 	</ion-list>
-	<tab-bar></tab-bar>
+	<tab-bar page="todos"></tab-bar>
 </ion-content>

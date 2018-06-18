@@ -1,15 +1,19 @@
-
 <ion-header>
 
 	<ion-navbar hideBackButton="true">
-		<ion-buttons left>
+		<ion-buttons left *ngIf="!(sys.deviceCast | async)?.core">
 			<button ion-button icon-only (click)="pop()">
 				<ion-icon name="arrow-back"></ion-icon>
 			</button>
 		</ion-buttons>
+
+		<ion-buttons left *ngIf="(sys.deviceCast | async)?.core">
+			<button ion-button icon-only (click)="pop()">
+				<ion-icon name="close"></ion-icon>
+			</button>
+		</ion-buttons>
 		<ion-title>Schedule</ion-title>
 	</ion-navbar>
-
 </ion-header>
 
 

@@ -85,8 +85,8 @@ var ComponentsModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_routing_service__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_space_service__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_system_service__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_space_service__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_system_service__ = __webpack_require__(149);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -102,8 +102,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var TabBarComponent = /** @class */ (function () {
-    function TabBarComponent(sys, events, spaceService, route) {
+    function TabBarComponent(navParams, navCtrl, sys, events, spaceService, route) {
         var _this = this;
+        this.navParams = navParams;
+        this.navCtrl = navCtrl;
         this.sys = sys;
         this.events = events;
         this.spaceService = spaceService;
@@ -114,34 +116,54 @@ var TabBarComponent = /** @class */ (function () {
             { title: 'todos', icon: 'checkbox-outline' },
             { title: 'new', icon: 'add-circle' },
         ];
+        this.space = {
+            title: 'All',
+            spaceid: 'all'
+        };
         console.log('Hello TabBarComponent Component');
         this.route.cast.subscribe(function (route) {
-            _this.routing = route;
+            if (route !== null) {
+                _this.routing = route;
+            }
+        });
+        this.spaceService.cast.subscribe(function (space) {
+            if (space !== null) {
+                _this.space = space;
+            }
         });
     }
-    TabBarComponent.prototype.openPage = function (tab) {
-        var _this = this;
-        this.spaceService.cast.first().subscribe(function (space) {
-            if (tab.title === 'new') {
-                _this.events.publish('newItem', {
-                    name: _this.routing && _this.routing.name ? _this.routing.name : 'cards',
-                    spaceid: space && space.spaceid ? space.spaceid : 'all',
-                    id: tab.title
-                });
-            }
-            else {
-                _this.events.publish('setRoot', {
-                    name: tab.title,
-                    spaceid: space && space.spaceid ? space.spaceid : 'all'
-                });
-            }
-        });
+    TabBarComponent.prototype.ngOnInit = function () {
+        if (this.navParams.data.spaceid) {
+            this.space.spaceid = this.navParams.data.spaceid;
+            this.route.setCurrentRoute({ name: this.page, spaceid: this.space.spaceid });
+        }
     };
+    TabBarComponent.prototype.openPage = function (tab) {
+        if (tab.title === 'new') {
+            this.events.publish('newItem', {
+                name: this.routing && this.routing.name ? this.routing.name : 'cards',
+                spaceid: this.space.spaceid,
+                id: tab.title
+            });
+        }
+        else {
+            this.events.publish('setRoot', {
+                name: tab.title,
+                spaceid: this.space.spaceid,
+            });
+        }
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
+        __metadata("design:type", String)
+    ], TabBarComponent.prototype, "page", void 0);
     TabBarComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'tab-bar',template:/*ion-inline-start:"/Users/aitch3/Workspace/O2Palm/test-pwa/src/components/tab-bar/tab-bar.html"*/'<ng-container *ngIf="sys.deviceCast | async as device">\n	<div class="tabNavbar" *ngIf="!device.core">\n		<ion-grid no-padding>\n			<ion-row>\n				<ion-col no-padding *ngFor="let tab of tabs">\n					<button ion-button icon-only (click)="openPage(tab)">\n						<ion-icon [name]="tab.icon"></ion-icon>\n					</button>\n				</ion-col>\n			</ion-row>\n		</ion-grid>\n	</div>\n</ng-container>'/*ion-inline-end:"/Users/aitch3/Workspace/O2Palm/test-pwa/src/components/tab-bar/tab-bar.html"*/
+            selector: 'tab-bar',template:/*ion-inline-start:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/components/tab-bar/tab-bar.html"*/'<ng-container *ngIf="sys.deviceCast | async as device">\n	<div class="tabNavbar" *ngIf="!device.core">\n		<ion-grid no-padding>\n			<ion-row>\n				<ion-col no-padding *ngFor="let tab of tabs">\n					<button ion-button icon-only (click)="openPage(tab)">\n						<ion-icon [name]="tab.icon"></ion-icon>\n					</button>\n				</ion-col>\n			</ion-row>\n		</ion-grid>\n	</div>\n</ng-container>'/*ion-inline-end:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/components/tab-bar/tab-bar.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__services_system_service__["a" /* SystemService */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_4__services_system_service__["a" /* SystemService */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Events */],
             __WEBPACK_IMPORTED_MODULE_3__services_space_service__["a" /* SpaceService */],
             __WEBPACK_IMPORTED_MODULE_2__services_routing_service__["a" /* RoutingService */]])
@@ -161,6 +183,7 @@ var TabBarComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_routing_service__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_system_service__ = __webpack_require__(149);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -173,9 +196,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var TodoPage = /** @class */ (function () {
-    function TodoPage(route, navCtrl, navParams) {
+    function TodoPage(sys, route, navCtrl, navParams) {
         var _this = this;
+        this.sys = sys;
         this.route = route;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
@@ -197,9 +222,10 @@ var TodoPage = /** @class */ (function () {
     };
     TodoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-todo',template:/*ion-inline-start:"/Users/aitch3/Workspace/O2Palm/test-pwa/src/pages/todos/todo/todo.html"*/'\n<ion-header>\n\n	<ion-navbar hideBackButton="true">\n		<ion-buttons left>\n			<button ion-button icon-only (click)="pop()">\n				<ion-icon name="arrow-back"></ion-icon>\n			</button>\n		</ion-buttons>\n		<ion-title>todo</ion-title>\n	</ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>'/*ion-inline-end:"/Users/aitch3/Workspace/O2Palm/test-pwa/src/pages/todos/todo/todo.html"*/,
+            selector: 'page-todo',template:/*ion-inline-start:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/pages/todos/todo/todo.html"*/'<ion-header>\n\n	<ion-navbar hideBackButton="true">\n		<ion-buttons left *ngIf="!(sys.deviceCast | async)?.core">\n			<button ion-button icon-only (click)="pop()">\n				<ion-icon name="arrow-back"></ion-icon>\n			</button>\n		</ion-buttons>\n\n		<ion-buttons left *ngIf="(sys.deviceCast | async)?.core">\n			<button ion-button icon-only (click)="pop()">\n				<ion-icon name="close"></ion-icon>\n			</button>\n		</ion-buttons>\n		<ion-title>todo</ion-title>\n	</ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>'/*ion-inline-end:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/pages/todos/todo/todo.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_routing_service__["a" /* RoutingService */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_system_service__["a" /* SystemService */],
+            __WEBPACK_IMPORTED_MODULE_2__services_routing_service__["a" /* RoutingService */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
     ], TodoPage);

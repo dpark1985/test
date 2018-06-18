@@ -17,8 +17,8 @@
 <ion-content>
 	<ion-list>
 		<button ion-item *ngFor="let item of temp" (click)="itemSelected(item)">
-			schedule-{{ item.title }}
+			schedule-{{space.title}}-{{ item.title }}
 		</button>
 	</ion-list>
-	<tab-bar></tab-bar>
+	<tab-bar page="schedules"></tab-bar>
 </ion-content>

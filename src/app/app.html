@@ -3,7 +3,7 @@
 		<ion-grid no-padding>
 			<ion-row>
 				<ion-col no-padding class="nav-content-left">
-
+					로고
 				</ion-col>
 				<ion-col no-padding class="nav-content-center">
 					<ion-buttons>
@@ -37,4 +37,12 @@
 	</ion-menu>
 
 	<ion-nav [root]="rootPage" [rootParams]="rootParams" #content swipeBackEnabled="false" main></ion-nav>
+
+	<ion-scroll class="rightSideMenu" *ngIf="(sys.deviceCast | async)?.core">
+		<ion-header>
+			<ion-toolbar>
+				<ion-title>Right Menu</ion-title>
+			</ion-toolbar>
+		</ion-header>
+	</ion-scroll>
 </ion-split-pane>

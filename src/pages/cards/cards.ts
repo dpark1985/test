@@ -28,6 +28,11 @@ export class CardsPage {
 		{ id: '10', title: '10' },
 	];
 
+	space: any = {
+		title: 'All',
+		spaceid: 'all'
+	};
+
 	constructor(
 		public sys: SystemService,
 		public platform: Platform,
@@ -42,6 +47,14 @@ export class CardsPage {
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad CardsPage');
+
+		this.spaceService.cast.subscribe((space: any) => {
+			if(space === null) {
+				this.space = {title: 'All'};
+			} else {
+				this.space = space;
+			}
+		});
 	}
 
 	toggleMenu() {
@@ -49,11 +62,9 @@ export class CardsPage {
 	}
 
 	itemSelected(item) {
-		this.spaceService.cast.first().subscribe((space: any) => {
-			this.navCtrl.push('cards-item', { 
-				spaceid: space && space.spaceid ? space.spaceid : 'all',
-				id: item.id 
-			});
+		this.navCtrl.push('cards-item', { 
+			spaceid: this.space.spaceid,
+			id: item.id 
 		});
 	}
 

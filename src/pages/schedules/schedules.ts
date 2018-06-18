@@ -28,6 +28,11 @@ export class SchedulesPage {
 		{ id: '10', title: '10' },
 	];
 
+	space: any = {
+		title: 'All',
+		spaceid: 'all'
+	};
+
 	constructor(
 		public sys: SystemService,
 		public spaceService: SpaceService,
@@ -41,6 +46,14 @@ export class SchedulesPage {
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad SchedulesPage');
+
+		this.spaceService.cast.subscribe((space: any) => {
+			if(space === null) {
+				this.space = {title: 'All'};
+			} else {
+				this.space = space;
+			}
+		});
 	}
 
 	toggleMenu() {
@@ -48,11 +61,9 @@ export class SchedulesPage {
 	}
 
 	itemSelected(item) {
-		this.spaceService.cast.first().subscribe((space: any) => {
-			this.navCtrl.push('schedules-item', { 
-				spaceid: space && space.spaceid ? space.spaceid : 'all',
-				id: item.id 
-			});
+		this.navCtrl.push('schedules-item', { 
+			spaceid: this.space.spaceid,
+			id: item.id 
 		});
 	}
 

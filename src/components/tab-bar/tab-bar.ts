@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Events } from 'ionic-angular';
+import { Component, Input } from '@angular/core';
+import { Events, NavController, NavParams } from 'ionic-angular';
 
 import { RoutingService } from '../../services/routing-service';
 import { SpaceService } from '../../services/space-service';
@@ -11,6 +11,8 @@ import { SystemService } from '../../services/system-service';
 })
 export class TabBarComponent {
 
+	@Input() page: string;
+
 	tabs: any = [
 		{ title: 'cards', icon: 'albums' },
 		{ title: 'schedules', icon: 'calendar' },
@@ -19,8 +21,14 @@ export class TabBarComponent {
 	];
 
 	private routing: any;
+	space: any = {
+		title: 'All',
+		spaceid: 'all'
+	};
 
 	constructor(
+		public navParams: NavParams,
+		public navCtrl: NavController,
 		public sys: SystemService,
 		public events: Events,
 		public spaceService: SpaceService,
@@ -29,24 +37,37 @@ export class TabBarComponent {
 		console.log('Hello TabBarComponent Component');
 
 		this.route.cast.subscribe((route) => {
-			this.routing = route;
+			if(route !== null) {
+				this.routing = route;
+			}			
+		});
+
+		this.spaceService.cast.subscribe((space: any) => {
+			if (space !== null) {
+				this.space = space;
+			}
 		});
 	}
 
+	ngOnInit() {
+		if (this.navParams.data.spaceid) {
+			this.space.spaceid = this.navParams.data.spaceid;
+			this.route.setCurrentRoute({ name: this.page, spaceid: this.space.spaceid });
+		}
+	}
+
 	openPage(tab: any) {
-		this.spaceService.cast.first().subscribe((space: any) => {
-			if(tab.title === 'new') {
-				this.events.publish('newItem', {
-					name: this.routing && this.routing.name ? this.routing.name : 'cards',
-					spaceid: space && space.spaceid ? space.spaceid : 'all',
-					id: tab.title
-				});
-			} else {
-				this.events.publish('setRoot', { 
-					name: tab.title, 
-					spaceid: space && space.spaceid ? space.spaceid : 'all'
-				});
-			}
-		});
+		if (tab.title === 'new') {
+			this.events.publish('newItem', {
+				name: this.routing && this.routing.name ? this.routing.name : 'cards',
+				spaceid: this.space.spaceid,
+				id: tab.title
+			});
+		} else {
+			this.events.publish('setRoot', {
+				name: tab.title,
+				spaceid: this.space.spaceid,
+			});
+		}
 	}
 }

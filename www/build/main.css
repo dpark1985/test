@@ -25696,6 +25696,12 @@ ion-navbar.toolbar {
   max-width: 270px;
 }
 
+.rightSideMenu {
+  width: 270px;
+  max-width: 270px;
+  height: 100%;
+}
+
 tab-bar {
   position: absolute;
   bottom: 50px;

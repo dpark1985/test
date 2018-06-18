@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Nav } from 'ionic-angular';
+import { Nav, ModalController } from 'ionic-angular';
 import { RoutingService } from '../../services/routing-service';
 import { SpaceService } from '../../services/space-service';
 import { SystemService } from '../../services/system-service';
@@ -15,6 +15,7 @@ export class O2LeftSideMenuComponent {
 	spaces: Array<{ title: string, spaceid: string }> = [];
 
 	constructor(
+		public modalCtrl: ModalController,
 		public sys: SystemService,
 		public route: RoutingService,
 		public spaceService: SpaceService,
@@ -46,6 +47,17 @@ export class O2LeftSideMenuComponent {
 			this.route.setCurrentRoute({ name: name, spaceid: space.spaceid });
 			this.nav.setRoot(name, { spaceid: space.spaceid });
 		});
+	}
+
+	openAccountSettings() {
+		let profileModal = this.modalCtrl.create('account-settings');
+		profileModal.onDidDismiss(() => {
+			this.route.cast.first().subscribe((route: any) => {
+				console.log('------dismiss-----');
+				this.nav.setRoot('account-resets');
+			});
+		});
+		profileModal.present();
 	}
 
 }

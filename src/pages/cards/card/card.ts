@@ -22,9 +22,6 @@ export class CardPage {
 		public navCtrl: NavController,
 		public navParams: NavParams
 	) {
-
-		console.log(this.navParams.data);
-
 		this.route.cast.first().subscribe((route: any) => {
 			if(route === null && this.navParams.get('id') === 'new') {
 				this.pop();

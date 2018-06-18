@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { SystemService } from '../../services/system-service';
 
 
 @IonicPage({
@@ -13,11 +14,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AccountSettingsPage {
 
-	constructor(public navCtrl: NavController, public navParams: NavParams) {
+	constructor(
+		public viewCtrl: ViewController,
+		public sys: SystemService,
+		public navCtrl: NavController, 
+		public navParams: NavParams
+	) {
 	}
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad AccountSettingsPage');
+	}
+
+	dismiss() {
+		this.viewCtrl.dismiss();
+	}
+
+	reset() {
+		this.viewCtrl.dismiss();
+		// this.navCtrl.push('account-resets');
+		// this.navCtrl.setRoot('account-resets');
 	}
 
 }

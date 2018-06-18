@@ -15,7 +15,7 @@ export class MyApp {
 
 	rootPage: any;
 	rootParams: any;
-	spaces: Array<{ title: string, spaceid: string }> = [];
+	// spaces: Array<{ title: string, spaceid: string }> = [];
 	platformType: object = {
 		android: false,
 		cordova: false,
@@ -29,7 +29,7 @@ export class MyApp {
 		tablet: false,
 		windows: false
 	};
-	private routing: any;
+	// private routing: any;
 
 	tabs: any = [
 		{ title: 'cards', icon: 'albums' },
@@ -49,17 +49,17 @@ export class MyApp {
 	) {
 		this.initializeApp();
 
-		this.spaces.push({
-			title: 'Space-all',
-			spaceid: 'all'
-		});
+		// this.spaces.push({
+		// 	title: 'Space-all',
+		// 	spaceid: 'all'
+		// });
 
-		for (let i = 0; i < 10; i++) {
-			this.spaces.push({
-				title: `Space-${i}`,
-				spaceid: i.toString()
-			});
-		}
+		// for (let i = 0; i < 10; i++) {
+		// 	this.spaces.push({
+		// 		title: `Space-${i}`,
+		// 		spaceid: i.toString()
+		// 	});
+		// }
 	}
 
 	initializeApp() {
@@ -69,9 +69,9 @@ export class MyApp {
 		}
 		this.sys.setDevice(this.platformType);
 
-		this.route.cast.subscribe((route) => {
-			this.routing = route;
-		});
+		// this.route.cast.subscribe((route) => {
+		// 	this.routing = route;
+		// });
 
 		this.initializeNatives();
 		this.initializePages();
@@ -88,59 +88,43 @@ export class MyApp {
 		this.rootPage = 'cards';
 		this.rootParams = { spaceid: 'all' };
 
-		this.initializeEvents();
+		// this.initializeEvents();
 	}
 
-	initializeEvents() {
-		this.events.subscribe('setRoot', (options: any) => {
-			this.route.setCurrentRoute({ name: options.name, spaceid: options.spaceid });
-			this.nav.setRoot(options.name, { spaceid: options.spaceid });
-		});
+	// initializeEvents() {
+	// 	this.events.subscribe('setRoot', (options: any) => {
+	// 		this.route.setCurrentRoute({ name: options.name, spaceid: options.spaceid });
+	// 		this.nav.setRoot(options.name, { spaceid: options.spaceid });
+	// 	});
 
-		this.events.subscribe('newItem', (options: any) => {
-			console.log('---aaaaa---');
-			console.log(options);
-			this.nav.push(options.name + '-item', {
-				spaceid: options.spaceid,
-				id: options.id
-			});
-		});
-	}
-
-	changeSpace(space) {
-		this.route.cast.first().subscribe((route: any) => {
-			let name = '';
-			if (route !== null && route.name) {
-				name = route.name.split('-')[0];
-			} else {
-				name = 'cards'
-			}
-			this.spaceService.setCurrentSpace(space);
-			this.route.setCurrentRoute({ name: name, spaceid: space.spaceid });
-			this.nav.setRoot(name, { spaceid: space.spaceid });
-		});
-	}
-
+	// 	this.events.subscribe('newItem', (options: any) => {
+	// 		const name = options.name.split('-');
+	// 		this.nav.push(name[0] + '-item', {
+	// 			spaceid: options.spaceid,
+	// 			id: options.id
+	// 		});
+	// 	});
+	// }
 
 
 	ionChange(ev: any) {
 		
 	}
 
-	openPage(tab: any) {
-		this.spaceService.cast.first().subscribe((space: any) => {
-			if(tab.title === 'new') {
-				this.events.publish('newItem', {
-					name: this.routing && this.routing.name ? this.routing.name : 'cards',
-					spaceid: space && space.spaceid ? space.spaceid : 'all',
-					id: tab.title
-				});
-			} else {
-				this.events.publish('setRoot', { 
-					name: tab.title, 
-					spaceid: space && space.spaceid ? space.spaceid : 'all'
-				});
-			}
-		});
-	}
+	// openPage(tab: any) {
+	// 	this.spaceService.cast.first().subscribe((space: any) => {
+	// 		if(tab.title === 'new') {
+	// 			this.events.publish('newItem', {
+	// 				name: this.routing && this.routing.name ? this.routing.name : 'cards',
+	// 				spaceid: space && space.spaceid ? space.spaceid : 'all',
+	// 				id: tab.title
+	// 			});
+	// 		} else {
+	// 			this.events.publish('setRoot', { 
+	// 				name: tab.title, 
+	// 				spaceid: space && space.spaceid ? space.spaceid : 'all'
+	// 			});
+	// 		}
+	// 	});
+	// }
 }

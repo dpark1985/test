@@ -49,9 +49,7 @@ export class CardsPage {
 		console.log('ionViewDidLoad CardsPage');
 
 		this.spaceService.cast.subscribe((space: any) => {
-			if(space === null) {
-				this.space = {title: 'All'};
-			} else {
+			if (space !== null) {
 				this.space = space;
 			}
 		});
@@ -62,9 +60,9 @@ export class CardsPage {
 	}
 
 	itemSelected(item) {
-		this.navCtrl.push('cards-item', { 
+		this.navCtrl.push('cards-item', {
 			spaceid: this.space.spaceid,
-			id: item.id 
+			id: item.id
 		});
 	}
 

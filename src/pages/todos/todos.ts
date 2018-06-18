@@ -48,9 +48,7 @@ export class TodosPage {
 		console.log('ionViewDidLoad TodosPage');
 		
 		this.spaceService.cast.subscribe((space: any) => {
-			if(space === null) {
-				this.space = {title: 'All'};
-			} else {
+			if (space !== null) {
 				this.space = space;
 			}
 		});

@@ -25684,22 +25684,22 @@ ion-navbar.toolbar {
   width: 100%;
 }
 
-.pwa-left-menu-width {
+.split-pane .pwa-left-menu-width {
   max-width: 270px !important;
 }
 
-.nav-content-left {
-  max-width: 270px;
-}
-
-.nav-content-right {
-  max-width: 270px;
-}
-
-.rightSideMenu {
+.split-pane .rightSideMenu {
   width: 270px;
-  max-width: 270px;
+  max-width: 270px !important;
   height: 100%;
+}
+
+.pwa-main-toolbar .nav-content-left {
+  max-width: 270px;
+}
+
+.pwa-main-toolbar .nav-content-right {
+  max-width: 270px;
 }
 
 tab-bar {

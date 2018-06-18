@@ -20,26 +20,32 @@
     position: relative;
     height: 100%;
     width: 100%;
+
+    .pwa-left-menu-width {
+        max-width: 270px !important;
+    }
+
+    .rightSideMenu {
+        width: 270px;
+        max-width: 270px !important;
+        height: 100%;
+    }
 }
 
-.pwa-left-menu-width {
-    max-width: 270px !important;
+
+
+.pwa-main-toolbar {
+    .nav-content-left {
+        max-width: 270px;
+    }
+    
+    .nav-content-center {
+    
+    }
+    
+    .nav-content-right {
+        max-width: 270px;
+    }
 }
 
-.nav-content-left {
-    max-width: 270px;
-}
 
-.nav-content-center {
-
-}
-
-.nav-content-right {
-    max-width: 270px;
-}
-
-.rightSideMenu {
-    width: 270px;
-    max-width: 270px;
-    height: 100%;
-}

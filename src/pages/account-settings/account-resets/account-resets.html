@@ -1,14 +1,19 @@
-<!--
-  Generated template for the AccountResetsPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>accountResets</ion-title>
-  </ion-navbar>
+	<ion-navbar hideBackButton="true">
+		<ion-buttons left *ngIf="!(sys.deviceCast | async)?.core">
+			<button ion-button icon-only (click)="pop()">
+				<ion-icon name="arrow-back"></ion-icon>
+			</button>
+		</ion-buttons>
+
+		<ion-buttons left *ngIf="(sys.deviceCast | async)?.core">
+			<button ion-button icon-only (click)="pop()">
+				<ion-icon name="close"></ion-icon>
+			</button>
+		</ion-buttons>
+		<ion-title>accountResets</ion-title>
+	</ion-navbar>
 
 </ion-header>
 

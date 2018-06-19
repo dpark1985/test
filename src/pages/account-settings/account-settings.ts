@@ -17,7 +17,7 @@ export class AccountSettingsPage {
 	constructor(
 		public viewCtrl: ViewController,
 		public sys: SystemService,
-		public navCtrl: NavController, 
+		public navCtrl: NavController,
 		public navParams: NavParams
 	) {
 	}
@@ -30,10 +30,8 @@ export class AccountSettingsPage {
 		this.viewCtrl.dismiss();
 	}
 
-	reset() {
-		this.viewCtrl.dismiss();
-		// this.navCtrl.push('account-resets');
-		// this.navCtrl.setRoot('account-resets');
+	reset(page: string, type?: string) {
+		this.viewCtrl.dismiss({ page: page, type: type });
 	}
 
 }

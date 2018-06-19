@@ -13,5 +13,7 @@
 
 
 <ion-content padding>
-	<button ion-button (click)="reset()">Reset</button>
+	<button ion-button (click)="reset('resets', 'password')">Reset-Password</button>
+	<button ion-button (click)="reset('resets', 'name')">Reset-Name</button>
+	<button ion-button (click)="reset('email-verification')">AccountEmailVerification</button>
 </ion-content>

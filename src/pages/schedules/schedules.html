@@ -20,5 +20,5 @@
 			schedule-{{space.title}}-{{ item.title }}
 		</button>
 	</ion-list>
-	<tab-bar page="schedules"></tab-bar>
+	<tab-bar *ngIf="!(sys.deviceCast | async)?.core" page="schedules"></tab-bar>
 </ion-content>

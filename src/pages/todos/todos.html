@@ -20,5 +20,5 @@
 			todo-{{space.title}}-{{ item.title }}
 		</button>
 	</ion-list>
-	<tab-bar page="todos"></tab-bar>
+	<tab-bar *ngIf="!(sys.deviceCast | async)?.core" page="todos"></tab-bar>
 </ion-content>

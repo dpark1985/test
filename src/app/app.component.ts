@@ -48,18 +48,6 @@ export class MyApp {
 		public splashScreen: SplashScreen
 	) {
 		this.initializeApp();
-
-		// this.spaces.push({
-		// 	title: 'Space-all',
-		// 	spaceid: 'all'
-		// });
-
-		// for (let i = 0; i < 10; i++) {
-		// 	this.spaces.push({
-		// 		title: `Space-${i}`,
-		// 		spaceid: i.toString()
-		// 	});
-		// }
 	}
 
 	initializeApp() {
@@ -68,11 +56,6 @@ export class MyApp {
 			this.platformType[key] = this.platform.is(key);
 		}
 		this.sys.setDevice(this.platformType);
-
-		// this.route.cast.subscribe((route) => {
-		// 	this.routing = route;
-		// });
-
 		this.initializeNatives();
 		this.initializePages();
 	}
@@ -87,44 +70,9 @@ export class MyApp {
 	initializePages() {
 		this.rootPage = 'cards';
 		this.rootParams = { spaceid: 'all' };
-
-		// this.initializeEvents();
 	}
-
-	// initializeEvents() {
-	// 	this.events.subscribe('setRoot', (options: any) => {
-	// 		this.route.setCurrentRoute({ name: options.name, spaceid: options.spaceid });
-	// 		this.nav.setRoot(options.name, { spaceid: options.spaceid });
-	// 	});
-
-	// 	this.events.subscribe('newItem', (options: any) => {
-	// 		const name = options.name.split('-');
-	// 		this.nav.push(name[0] + '-item', {
-	// 			spaceid: options.spaceid,
-	// 			id: options.id
-	// 		});
-	// 	});
-	// }
-
 
 	ionChange(ev: any) {
-		
-	}
 
-	// openPage(tab: any) {
-	// 	this.spaceService.cast.first().subscribe((space: any) => {
-	// 		if(tab.title === 'new') {
-	// 			this.events.publish('newItem', {
-	// 				name: this.routing && this.routing.name ? this.routing.name : 'cards',
-	// 				spaceid: space && space.spaceid ? space.spaceid : 'all',
-	// 				id: tab.title
-	// 			});
-	// 		} else {
-	// 			this.events.publish('setRoot', { 
-	// 				name: tab.title, 
-	// 				spaceid: space && space.spaceid ? space.spaceid : 'all'
-	// 			});
-	// 		}
-	// 	});
-	// }
+	}
 }

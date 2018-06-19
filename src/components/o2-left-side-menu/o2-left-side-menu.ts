@@ -21,7 +21,7 @@ export class O2LeftSideMenuComponent {
 		public spaceService: SpaceService,
 	) {
 		console.log('Hello O2LeftSideMenuComponent Component');
-		
+
 		this.spaces.push({
 			title: 'Space-all',
 			spaceid: 'all'
@@ -36,26 +36,17 @@ export class O2LeftSideMenuComponent {
 	}
 
 	changeSpace(space) {
-		this.route.cast.first().subscribe((route: any) => {
-			let name = '';
-			if (route !== null && route.name) {
-				name = route.name.split('-')[0];
-			} else {
-				name = 'cards'
-			}
+		this.route.getCurrentRouteStorage().then((state: any) => {
 			this.spaceService.setCurrentSpace(space);
-			this.route.setCurrentRoute({ name: name, spaceid: space.spaceid });
-			this.nav.setRoot(name, { spaceid: space.spaceid });
+			this.route.setCurrentRoute({ name: state.name, spaceid: space.spaceid });
+			this.nav.setRoot(state.name, { spaceid: space.spaceid });
 		});
 	}
 
 	openAccountSettings() {
 		let profileModal = this.modalCtrl.create('account-settings');
-		profileModal.onDidDismiss(() => {
-			this.route.cast.first().subscribe((route: any) => {
-				console.log('------dismiss-----');
-				this.nav.setRoot('account-resets');
-			});
+		profileModal.onDidDismiss((data: any) => {
+			this.nav.setRoot(`account-${data.page}`, { type: data.type });
 		});
 		profileModal.present();
 	}

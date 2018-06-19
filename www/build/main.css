@@ -25685,21 +25685,23 @@ ion-navbar.toolbar {
 }
 
 .split-pane .pwa-left-menu-width {
-  max-width: 270px !important;
+  max-width: 220px !important;
+  min-width: 220px !important;
 }
 
 .split-pane .rightSideMenu {
-  width: 270px;
-  max-width: 270px !important;
+  width: 220px;
+  max-width: 220px !important;
+  min-width: 220px !important;
   height: 100%;
 }
 
 .pwa-main-toolbar .nav-content-left {
-  max-width: 270px;
+  max-width: 220px;
 }
 
 .pwa-main-toolbar .nav-content-right {
-  max-width: 270px;
+  max-width: 220px;
 }
 
 tab-bar {

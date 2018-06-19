@@ -26,11 +26,11 @@ var map = {
 		21
 	],
 	"../pages/account-settings/account-resets/account-resets.module": [
-		686,
+		685,
 		20
 	],
 	"../pages/account-settings/account-settings.module": [
-		685,
+		686,
 		19
 	],
 	"../pages/cards/card-history/card-history.module": [
@@ -38,15 +38,15 @@ var map = {
 		18
 	],
 	"../pages/cards/card-unread/card-unread.module": [
-		690,
+		688,
 		17
 	],
 	"../pages/cards/card/card.module": [
-		688,
+		689,
 		16
 	],
 	"../pages/cards/cards.module": [
-		689,
+		690,
 		15
 	],
 	"../pages/files/files.module": [
@@ -58,11 +58,11 @@ var map = {
 		13
 	],
 	"../pages/schedules/schedule/schedule.module": [
-		693,
+		694,
 		12
 	],
 	"../pages/schedules/schedules.module": [
-		694,
+		693,
 		11
 	],
 	"../pages/settings/settings.module": [
@@ -70,11 +70,11 @@ var map = {
 		10
 	],
 	"../pages/settings/software-information/software-information.module": [
-		697,
+		696,
 		9
 	],
 	"../pages/settings/terms-and-policies/terms-and-policies.module": [
-		696,
+		697,
 		8
 	],
 	"../pages/space-settings/space-colors/space-colors.module": [
@@ -86,11 +86,11 @@ var map = {
 		6
 	],
 	"../pages/space-settings/space-logs/space-logs.module": [
-		701,
+		700,
 		5
 	],
 	"../pages/space-settings/space-members/space-members.module": [
-		700,
+		701,
 		4
 	],
 	"../pages/space-settings/space-settings.module": [
@@ -102,11 +102,11 @@ var map = {
 		2
 	],
 	"../pages/todos/todo/todo.module": [
-		705,
+		704,
 		1
 	],
 	"../pages/todos/todos.module": [
-		704,
+		705,
 		0
 	]
 };
@@ -133,7 +133,7 @@ module.exports = webpackAsyncContext;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ComponentsModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tab_bar_tab_bar__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tab_bar_tab_bar__ = __webpack_require__(657);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__o2_left_side_menu_o2_left_side_menu__ = __webpack_require__(658);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__o2_right_side_menu_o2_right_side_menu__ = __webpack_require__(659);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__o2_top_side_nav_o2_top_side_nav__ = __webpack_require__(660);
@@ -244,27 +244,27 @@ var AppModule = /** @class */ (function () {
                 }, {
                     links: [
                         { loadChildren: '../pages/account-settings/account-email-verification/account-email-verification.module#AccountEmailVerificationPageModule', name: 'account-email-verification', segment: 'account-settings/email-verification', priority: 'low', defaultHistory: ['account-settings'] },
-                        { loadChildren: '../pages/account-settings/account-settings.module#AccountSettingsPageModule', name: 'account-settings', segment: 'account-settings', priority: 'high', defaultHistory: [] },
                         { loadChildren: '../pages/account-settings/account-resets/account-resets.module#AccountResetsPageModule', name: 'account-resets', segment: 'account-settings/resets/:type', priority: 'low', defaultHistory: ['account-settings'] },
+                        { loadChildren: '../pages/account-settings/account-settings.module#AccountSettingsPageModule', name: 'account-settings', segment: 'account-settings', priority: 'high', defaultHistory: [] },
                         { loadChildren: '../pages/cards/card-history/card-history.module#CardHistoryPageModule', name: 'card-history', segment: 'cards/:spaceid/:cardid/history', priority: 'low', defaultHistory: ['cards'] },
+                        { loadChildren: '../pages/cards/card-unread/card-unread.module#CardUnreadPageModule', name: 'card-unread', segment: 'cards/:spaceid/:cardid/unread', priority: 'low', defaultHistory: ['cards'] },
                         { loadChildren: '../pages/cards/card/card.module#CardPageModule', name: 'cards-item', segment: 'cards/:spaceid/:id', priority: 'low', defaultHistory: ['cards'] },
                         { loadChildren: '../pages/cards/cards.module#CardsPageModule', name: 'cards', segment: 'cards/:spaceid', priority: 'high', defaultHistory: [] },
-                        { loadChildren: '../pages/cards/card-unread/card-unread.module#CardUnreadPageModule', name: 'card-unread', segment: 'cards/:spaceid/:cardid/unread', priority: 'low', defaultHistory: ['cards'] },
                         { loadChildren: '../pages/files/files.module#FilesPageModule', name: 'files', segment: 'files/:spaceid', priority: 'high', defaultHistory: [] },
                         { loadChildren: '../pages/interlinks/interlinks.module#InterlinksPageModule', name: 'InterlinksPage', segment: 'interlinks', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/schedules/schedule/schedule.module#SchedulePageModule', name: 'schedules-item', segment: 'schedules/:spaceid/:id', priority: 'low', defaultHistory: ['schedules'] },
                         { loadChildren: '../pages/schedules/schedules.module#SchedulesPageModule', name: 'schedules', segment: 'schedules/:spaceid', priority: 'high', defaultHistory: [] },
+                        { loadChildren: '../pages/schedules/schedule/schedule.module#SchedulePageModule', name: 'schedules-item', segment: 'schedules/:spaceid/:id', priority: 'low', defaultHistory: ['schedules'] },
                         { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'settings', segment: 'settings', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/settings/terms-and-policies/terms-and-policies.module#TermsAndPoliciesPageModule', name: 'terms-policies', segment: 'terms-policies/:type', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/settings/software-information/software-information.module#SoftwareInformationPageModule', name: 'software-information', segment: 'software-information', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/settings/terms-and-policies/terms-and-policies.module#TermsAndPoliciesPageModule', name: 'terms-policies', segment: 'terms-policies/:type', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/space-settings/space-colors/space-colors.module#SpaceColorsPageModule', name: 'space-color', segment: 'space-settings/:spaceid/color', priority: 'low', defaultHistory: ['space-settings'] },
                         { loadChildren: '../pages/space-settings/space-invitations/space-invitations.module#SpaceInvitationsPageModule', name: 'space-invitation', segment: 'space-settings/:spaceid/invitation', priority: 'low', defaultHistory: ['space-settings'] },
-                        { loadChildren: '../pages/space-settings/space-members/space-members.module#SpaceMembersPageModule', name: 'space-members', segment: 'space-settings/:spaceid/members', priority: 'low', defaultHistory: ['space-settings'] },
                         { loadChildren: '../pages/space-settings/space-logs/space-logs.module#SpaceLogsPageModule', name: 'space-logs', segment: 'space-settings/:spaceid/logs', priority: 'low', defaultHistory: ['space-settings'] },
+                        { loadChildren: '../pages/space-settings/space-members/space-members.module#SpaceMembersPageModule', name: 'space-members', segment: 'space-settings/:spaceid/members', priority: 'low', defaultHistory: ['space-settings'] },
                         { loadChildren: '../pages/space-settings/space-settings.module#SpaceSettingsPageModule', name: 'space-settings', segment: 'space-settings/:spaceid', priority: 'high', defaultHistory: [] },
                         { loadChildren: '../pages/space-settings/space-storage/space-storage.module#SpaceStoragePageModule', name: 'space-storage', segment: 'space-settings/:spaceid/storage', priority: 'low', defaultHistory: ['space-settings'] },
-                        { loadChildren: '../pages/todos/todos.module#TodosPageModule', name: 'todos', segment: 'todos/:spaceid', priority: 'high', defaultHistory: [] },
-                        { loadChildren: '../pages/todos/todo/todo.module#TodoPageModule', name: 'todos-item', segment: 'todos/:spaceid/:id', priority: 'low', defaultHistory: ['todos'] }
+                        { loadChildren: '../pages/todos/todo/todo.module#TodoPageModule', name: 'todos-item', segment: 'todos/:spaceid/:id', priority: 'low', defaultHistory: ['todos'] },
+                        { loadChildren: '../pages/todos/todos.module#TodosPageModule', name: 'todos', segment: 'todos/:spaceid', priority: 'high', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
@@ -290,104 +290,6 @@ var AppModule = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=app.module.js.map
-
-/***/ }),
-
-/***/ 370:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabBarComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_routing_service__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_space_service__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_system_service__ = __webpack_require__(44);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var TabBarComponent = /** @class */ (function () {
-    function TabBarComponent(navParams, navCtrl, sys, events, spaceService, route) {
-        var _this = this;
-        this.navParams = navParams;
-        this.navCtrl = navCtrl;
-        this.sys = sys;
-        this.events = events;
-        this.spaceService = spaceService;
-        this.route = route;
-        this.tabs = [
-            { title: 'cards', icon: 'albums' },
-            { title: 'schedules', icon: 'calendar' },
-            { title: 'todos', icon: 'checkbox-outline' },
-            { title: 'new', icon: 'add-circle' },
-        ];
-        this.space = {
-            title: 'All',
-            spaceid: 'all'
-        };
-        console.log('Hello TabBarComponent Component');
-        this.route.cast.subscribe(function (route) {
-            if (route !== null) {
-                _this.routing = route;
-            }
-        });
-        this.spaceService.cast.subscribe(function (space) {
-            if (space !== null) {
-                _this.space = space;
-            }
-        });
-    }
-    TabBarComponent.prototype.ngOnInit = function () {
-        if (this.navParams.data.spaceid) {
-            this.space.spaceid = this.navParams.data.spaceid;
-            this.route.setCurrentRoute({ name: this.page, spaceid: this.space.spaceid });
-        }
-    };
-    TabBarComponent.prototype.openPage = function (tab) {
-        if (tab.title === 'new') {
-            this.events.publish('newItem', {
-                name: this.routing && this.routing.name ? this.routing.name : 'cards',
-                spaceid: this.space.spaceid,
-                id: tab.title
-            });
-        }
-        else {
-            this.events.publish('setRoot', {
-                name: tab.title,
-                spaceid: this.space.spaceid,
-            });
-        }
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
-        __metadata("design:type", String)
-    ], TabBarComponent.prototype, "page", void 0);
-    TabBarComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'tab-bar',template:/*ion-inline-start:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/components/tab-bar/tab-bar.html"*/'<div class="tabNavbar">\n	<ion-grid no-padding>\n		<ion-row>\n			<ion-col no-padding *ngFor="let tab of tabs">\n				<button ion-button icon-only (click)="openPage(tab)">\n					<ion-icon [name]="tab.icon"></ion-icon>\n				</button>\n			</ion-col>\n		</ion-row>\n	</ion-grid>\n</div>'/*ion-inline-end:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/components/tab-bar/tab-bar.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_4__services_system_service__["a" /* SystemService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Events */],
-            __WEBPACK_IMPORTED_MODULE_3__services_space_service__["a" /* SpaceService */],
-            __WEBPACK_IMPORTED_MODULE_2__services_routing_service__["a" /* RoutingService */]])
-    ], TabBarComponent);
-    return TabBarComponent;
-}());
-
-//# sourceMappingURL=tab-bar.js.map
 
 /***/ }),
 
@@ -565,10 +467,9 @@ var RoutingService = /** @class */ (function () {
     };
     RoutingService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]])
     ], RoutingService);
     return RoutingService;
-    var _a;
 }());
 
 //# sourceMappingURL=routing-service.js.map
@@ -610,6 +511,104 @@ var SpaceService = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=space-service.js.map
+
+/***/ }),
+
+/***/ 657:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabBarComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_routing_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_space_service__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_system_service__ = __webpack_require__(44);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var TabBarComponent = /** @class */ (function () {
+    function TabBarComponent(navParams, navCtrl, sys, events, spaceService, route) {
+        var _this = this;
+        this.navParams = navParams;
+        this.navCtrl = navCtrl;
+        this.sys = sys;
+        this.events = events;
+        this.spaceService = spaceService;
+        this.route = route;
+        this.tabs = [
+            { title: 'cards', icon: 'albums' },
+            { title: 'schedules', icon: 'calendar' },
+            { title: 'todos', icon: 'checkbox-outline' },
+            { title: 'new', icon: 'add-circle' },
+        ];
+        this.space = {
+            title: 'All',
+            spaceid: 'all'
+        };
+        console.log('Hello TabBarComponent Component');
+        this.route.cast.subscribe(function (route) {
+            if (route !== null) {
+                _this.routing = route;
+            }
+        });
+        this.spaceService.cast.subscribe(function (space) {
+            if (space !== null) {
+                _this.space = space;
+            }
+        });
+    }
+    TabBarComponent.prototype.ngOnInit = function () {
+        if (this.navParams.data.spaceid) {
+            this.space.spaceid = this.navParams.data.spaceid;
+            this.route.setCurrentRoute({ name: this.page, spaceid: this.space.spaceid });
+        }
+    };
+    TabBarComponent.prototype.openPage = function (tab) {
+        if (tab.title === 'new') {
+            this.events.publish('newItem', {
+                name: this.routing && this.routing.name ? this.routing.name : 'cards',
+                spaceid: this.space.spaceid,
+                id: tab.title
+            });
+        }
+        else {
+            this.events.publish('setRoot', {
+                name: tab.title,
+                spaceid: this.space.spaceid,
+            });
+        }
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
+        __metadata("design:type", String)
+    ], TabBarComponent.prototype, "page", void 0);
+    TabBarComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'tab-bar',template:/*ion-inline-start:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/components/tab-bar/tab-bar.html"*/'<div class="tabNavbar">\n	<ion-grid no-padding>\n		<ion-row>\n			<ion-col no-padding *ngFor="let tab of tabs">\n				<button ion-button icon-only (click)="openPage(tab)">\n					<ion-icon [name]="tab.icon"></ion-icon>\n				</button>\n			</ion-col>\n		</ion-row>\n	</ion-grid>\n</div>'/*ion-inline-end:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/components/tab-bar/tab-bar.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_4__services_system_service__["a" /* SystemService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_3__services_space_service__["a" /* SpaceService */],
+            __WEBPACK_IMPORTED_MODULE_2__services_routing_service__["a" /* RoutingService */]])
+    ], TabBarComponent);
+    return TabBarComponent;
+}());
+
+//# sourceMappingURL=tab-bar.js.map
 
 /***/ }),
 
@@ -674,16 +673,18 @@ var O2LeftSideMenuComponent = /** @class */ (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
-        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Nav */]) === "function" && _a || Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Nav */])
     ], O2LeftSideMenuComponent.prototype, "nav", void 0);
     O2LeftSideMenuComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'o2-left-side-menu',template:/*ion-inline-start:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/components/o2-left-side-menu/o2-left-side-menu.html"*/'<ion-header>\n	<ion-toolbar>\n		<ion-title>Menu</ion-title>\n		<ion-buttons>\n			<button ion-button clear (click)="openAccountSettings()">Accounts</button>\n		</ion-buttons>\n	</ion-toolbar>\n</ion-header>\n\n<ion-content>\n	<ion-list>\n		<button menuClose ion-item *ngFor="let s of spaces" (click)="changeSpace(s)">\n			{{s.title}}\n		</button>\n	</ion-list>\n</ion-content>'/*ion-inline-end:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/components/o2-left-side-menu/o2-left-side-menu.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__services_system_service__["a" /* SystemService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_system_service__["a" /* SystemService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__services_routing_service__["a" /* RoutingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_routing_service__["a" /* RoutingService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__services_space_service__["a" /* SpaceService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_space_service__["a" /* SpaceService */]) === "function" && _e || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_4__services_system_service__["a" /* SystemService */],
+            __WEBPACK_IMPORTED_MODULE_2__services_routing_service__["a" /* RoutingService */],
+            __WEBPACK_IMPORTED_MODULE_3__services_space_service__["a" /* SpaceService */]])
     ], O2LeftSideMenuComponent);
     return O2LeftSideMenuComponent;
-    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=o2-left-side-menu.js.map
@@ -901,15 +902,20 @@ var MyApp = /** @class */ (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Nav */]),
-        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Nav */]) === "function" && _a || Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Nav */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/app/app.html"*/'<ng-container *ngIf="sys.deviceCast | async as device">\n	<o2-top-side-nav [nav]="nav" *ngIf="device.core"></o2-top-side-nav>\n</ng-container>\n\n<ion-split-pane (ionChange)="ionChange($event)">\n	<ion-menu side="left" [content]="content" id="leftSideMenu" type="overlay" [ngClass]="{\'pwa-left-menu-width\': (sys.deviceCast | async)?.core}">\n		<o2-left-side-menu [nav]="nav"></o2-left-side-menu>\n	</ion-menu>\n\n	<ion-nav [root]="rootPage" [rootParams]="rootParams" #content swipeBackEnabled="false" main></ion-nav>\n\n	<ion-menu side="right" [content]="content" id="rightSideMenu" type="overlay" class="rightSideMenu" *ngIf="(sys.deviceCast | async)?.core">\n		<o2-right-side-menu></o2-right-side-menu>\n	</ion-menu>\n</ion-split-pane>'/*ion-inline-end:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/app/app.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6__services_system_service__["a" /* SystemService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__services_system_service__["a" /* SystemService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Events */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__services_routing_service__["a" /* RoutingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_routing_service__["a" /* RoutingService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__services_space_service__["a" /* SpaceService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_space_service__["a" /* SpaceService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Platform */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _h || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_6__services_system_service__["a" /* SystemService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_4__services_routing_service__["a" /* RoutingService */],
+            __WEBPACK_IMPORTED_MODULE_5__services_space_service__["a" /* SpaceService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
+            __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
     return MyApp;
-    var _a, _b, _c, _d, _e, _f, _g, _h;
 }());
 
 //# sourceMappingURL=app.component.js.map

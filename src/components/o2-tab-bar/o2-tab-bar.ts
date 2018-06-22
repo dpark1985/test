@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Events, NavController, NavParams } from 'ionic-angular';
 
 import { RoutingService } from '../../services/routing-service';
@@ -6,12 +6,10 @@ import { SpaceService } from '../../services/space-service';
 import { SystemService } from '../../services/system-service';
 
 @Component({
-	selector: 'tab-bar',
-	templateUrl: 'tab-bar.html'
+	selector: 'o2-tab-bar',
+	templateUrl: 'o2-tab-bar.html'
 })
-export class TabBarComponent {
-
-	@Input() page: string;
+export class O2TabBarComponent {
 
 	tabs: any = [
 		{ title: 'cards', icon: 'albums' },
@@ -35,39 +33,26 @@ export class TabBarComponent {
 		public route: RoutingService
 	) {
 		console.log('Hello TabBarComponent Component');
-
 		this.route.cast.subscribe((route) => {
 			if(route !== null) {
 				this.routing = route;
 			}			
 		});
-
-		this.spaceService.cast.subscribe((space: any) => {
-			if (space !== null) {
-				this.space = space;
-			}
-		});
-	}
-
-	ngOnInit() {
-		if (this.navParams.data.spaceid) {
-			this.space.spaceid = this.navParams.data.spaceid;
-			this.route.setCurrentRoute({ name: this.page, spaceid: this.space.spaceid });
-		}
 	}
 
 	openPage(tab: any) {
 		if (tab.title === 'new') {
-			this.events.publish('newItem', {
-				name: this.routing && this.routing.name ? this.routing.name : 'cards',
-				spaceid: this.space.spaceid,
-				id: tab.title
+			let name = (this.routing && this.routing.name ? this.routing.name : 'cards').split('-');
+			let spaceid = this.routing.spaceid;
+			let itemid =  tab.title;
+
+			this.navCtrl.push(name[0] + '-item', {
+				spaceid: spaceid,
+				itemid: itemid
 			});
 		} else {
-			this.events.publish('setRoot', {
-				name: tab.title,
-				spaceid: this.space.spaceid,
-			});
+			this.navCtrl.setRoot(tab.title, { spaceid: this.routing.spaceid })
+			this.route.setCurrentRoute({ name: tab.title, spaceid: this.routing.spaceid });
 		}
 	}
 }

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController, Platform } from 'ionic-angular';
-import { RoutingService } from '../../services/routing-service';
 import { SpaceService } from '../../services/space-service';
 import { SystemService } from '../../services/system-service';
+import { RoutingService } from '../../services/routing-service';
 
 @IonicPage({
 	name: 'cards',
@@ -16,16 +16,16 @@ import { SystemService } from '../../services/system-service';
 export class CardsPage {
 
 	temp: any = [
-		{ id: '1', title: '1' },
-		{ id: '2', title: '2' },
-		{ id: '3', title: '3' },
-		{ id: '4', title: '4' },
-		{ id: '5', title: '5' },
-		{ id: '6', title: '6' },
-		{ id: '7', title: '7' },
-		{ id: '8', title: '8' },
-		{ id: '9', title: '9' },
-		{ id: '10', title: '10' },
+		{ itemid: '1', title: '1' },
+		{ itemid: '2', title: '2' },
+		{ itemid: '3', title: '3' },
+		{ itemid: '4', title: '4' },
+		{ itemid: '5', title: '5' },
+		{ itemid: '6', title: '6' },
+		{ itemid: '7', title: '7' },
+		{ itemid: '8', title: '8' },
+		{ itemid: '9', title: '9' },
+		{ itemid: '10', title: '10' },
 	];
 
 	space: any = {
@@ -34,10 +34,10 @@ export class CardsPage {
 	};
 
 	constructor(
+		public route: RoutingService,
 		public sys: SystemService,
 		public platform: Platform,
 		public spaceService: SpaceService,
-		public route: RoutingService,
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		public menuCtrl: MenuController
@@ -48,11 +48,10 @@ export class CardsPage {
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad CardsPage');
 
-		this.spaceService.cast.subscribe((space: any) => {
-			if (space !== null) {
-				this.space = space;
-			}
-		});
+	}
+
+	ionViewWillEnter() {
+		this.route.setCurrentRoute({ name: 'cards', spaceid: this.navParams.get('spaceid') });
 	}
 
 	toggleMenu() {
@@ -61,8 +60,8 @@ export class CardsPage {
 
 	itemSelected(item) {
 		this.navCtrl.push('cards-item', {
-			spaceid: this.space.spaceid,
-			id: item.id
+			spaceid: this.navParams.get('spaceid'),
+			itemid: item.itemid
 		});
 	}
 

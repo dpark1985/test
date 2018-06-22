@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Nav, Events } from 'ionic-angular';
+import { Nav, } from 'ionic-angular';
 
 import { RoutingService } from '../../services/routing-service';
 import { SpaceService } from '../../services/space-service';
@@ -21,48 +21,32 @@ export class O2TopSideNavComponent {
 	];
 
 	constructor(
-		public events: Events,
 		public sys: SystemService,
 		public route: RoutingService,
 		public spaceService: SpaceService,
 	) {
 		console.log('Hello O2TopSideNavComponent Component');
-		this.route.cast.subscribe((route) => {
-			this.routing = route;
-		});
-		this.initializeEvents();
-	}
-
-	initializeEvents() {
-		this.events.subscribe('setRoot', (options: any) => {
-			this.route.setCurrentRoute({ name: options.name, spaceid: options.spaceid });
-			this.nav.setRoot(options.name, { spaceid: options.spaceid });
-		});
-
-		this.events.subscribe('newItem', (options: any) => {
-			const name = options.name.split('-');
-			this.nav.push(name[0] + '-item', {
-				spaceid: options.spaceid,
-				id: options.id
-			});
+		this.route.cast.subscribe((route: any) => {
+			if (route !== null) {
+				this.routing = route;
+			}
 		});
 	}
 
 	openPage(tab: any) {
-		this.spaceService.cast.first().subscribe((space: any) => {
-			if(tab.title === 'new') {
-				this.events.publish('newItem', {
-					name: this.routing && this.routing.name ? this.routing.name : 'cards',
-					spaceid: space && space.spaceid ? space.spaceid : 'all',
-					id: tab.title
-				});
-			} else {
-				this.events.publish('setRoot', { 
-					name: tab.title, 
-					spaceid: space && space.spaceid ? space.spaceid : 'all'
-				});
-			}
-		});
+		if (tab.title === 'new') {
+			let name = (this.routing && this.routing.name ? this.routing.name : 'cards').split('-');
+			let spaceid = this.routing.spaceid;
+			let itemid =  tab.title;
+
+			this.nav.push(name[0] + '-item', {
+				spaceid: spaceid,
+				itemid: itemid
+			});
+		} else {
+			this.nav.setRoot(tab.title, { spaceid: this.routing.spaceid })
+			this.route.setCurrentRoute({ name: tab.title, spaceid: this.routing.spaceid });
+		}
 	}
 
 }

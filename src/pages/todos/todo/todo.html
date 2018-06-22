@@ -2,13 +2,13 @@
 
 	<ion-navbar hideBackButton="true">
 		<ion-buttons left *ngIf="!(sys.deviceCast | async)?.core">
-			<button ion-button icon-only (click)="pop()">
+			<button ion-button icon-only (click)="route.pop('todos', this.navParams.get('spaceid'), navCtrl)">
 				<ion-icon name="arrow-back"></ion-icon>
 			</button>
 		</ion-buttons>
 
 		<ion-buttons left *ngIf="(sys.deviceCast | async)?.core">
-			<button ion-button icon-only (click)="pop()">
+			<button ion-button icon-only (click)="route.pop('todos', this.navParams.get('spaceid'), navCtrl)">
 				<ion-icon name="close"></ion-icon>
 			</button>
 		</ion-buttons>

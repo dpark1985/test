@@ -1,14 +1,14 @@
 webpackJsonp([15],{
 
-/***/ 690:
+/***/ 688:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CardsPageModule", function() { return CardsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cards__ = __webpack_require__(712);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cards__ = __webpack_require__(710);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(344);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -41,16 +41,16 @@ var CardsPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 712:
+/***/ 710:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CardsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_routing_service__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_space_service__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_system_service__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_space_service__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_system_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_routing_service__ = __webpack_require__(44);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -66,25 +66,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var CardsPage = /** @class */ (function () {
-    function CardsPage(sys, platform, spaceService, route, navCtrl, navParams, menuCtrl) {
+    function CardsPage(route, sys, platform, spaceService, navCtrl, navParams, menuCtrl) {
+        this.route = route;
         this.sys = sys;
         this.platform = platform;
         this.spaceService = spaceService;
-        this.route = route;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.menuCtrl = menuCtrl;
         this.temp = [
-            { id: '1', title: '1' },
-            { id: '2', title: '2' },
-            { id: '3', title: '3' },
-            { id: '4', title: '4' },
-            { id: '5', title: '5' },
-            { id: '6', title: '6' },
-            { id: '7', title: '7' },
-            { id: '8', title: '8' },
-            { id: '9', title: '9' },
-            { id: '10', title: '10' },
+            { itemid: '1', title: '1' },
+            { itemid: '2', title: '2' },
+            { itemid: '3', title: '3' },
+            { itemid: '4', title: '4' },
+            { itemid: '5', title: '5' },
+            { itemid: '6', title: '6' },
+            { itemid: '7', title: '7' },
+            { itemid: '8', title: '8' },
+            { itemid: '9', title: '9' },
+            { itemid: '10', title: '10' },
         ];
         this.space = {
             title: 'All',
@@ -92,31 +92,28 @@ var CardsPage = /** @class */ (function () {
         };
     }
     CardsPage.prototype.ionViewDidLoad = function () {
-        var _this = this;
         console.log('ionViewDidLoad CardsPage');
-        this.spaceService.cast.subscribe(function (space) {
-            if (space !== null) {
-                _this.space = space;
-            }
-        });
+    };
+    CardsPage.prototype.ionViewWillEnter = function () {
+        this.route.setCurrentRoute({ name: 'cards', spaceid: this.navParams.get('spaceid') });
     };
     CardsPage.prototype.toggleMenu = function () {
         this.menuCtrl.toggle('leftSideMenu');
     };
     CardsPage.prototype.itemSelected = function (item) {
         this.navCtrl.push('cards-item', {
-            spaceid: this.space.spaceid,
-            id: item.id
+            spaceid: this.navParams.get('spaceid'),
+            itemid: item.itemid
         });
     };
     CardsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-cards',template:/*ion-inline-start:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/pages/cards/cards.html"*/'<ng-container *ngIf="sys.deviceCast | async as device">\n	<ion-header *ngIf="!device.core">\n\n		<ion-navbar>\n			<ion-buttons left>\n				<button ion-button icon-only (click)="toggleMenu()">\n					<ion-icon name="menu"></ion-icon>\n				</button>\n			</ion-buttons>\n			<ion-title>cards</ion-title>\n		</ion-navbar>\n\n	</ion-header>\n</ng-container>\n\n\n\n<ion-content>\n	<ion-list>\n		<button ion-item *ngFor="let item of temp" (click)="itemSelected(item)">\n			card-{{space.title}}-{{ item.title }}\n		</button>\n	</ion-list>\n	<tab-bar *ngIf="!(sys.deviceCast | async)?.core"  page="cards"></tab-bar>\n</ion-content>'/*ion-inline-end:"/Users/o2palm/Workspace/002.Test/Snowpalm4/src/pages/cards/cards.html"*/,
+            selector: 'page-cards',template:/*ion-inline-start:"/Users/aitch3/Workspace/O2Palm/test-pwa/src/pages/cards/cards.html"*/'<ng-container *ngIf="sys.deviceCast | async as device">\n	<ion-header *ngIf="!device.core">\n\n		<ion-navbar>\n			<ion-buttons left>\n				<button ion-button icon-only (click)="toggleMenu()">\n					<ion-icon name="menu"></ion-icon>\n				</button>\n			</ion-buttons>\n			<ion-title>cards</ion-title>\n		</ion-navbar>\n\n	</ion-header>\n</ng-container>\n\n\n\n<ion-content>\n	<ion-list>\n		<button ion-item *ngFor="let item of temp" (click)="itemSelected(item)">\n			card-Space{{this.navParams.get(\'spaceid\')}}-{{ item.title }}\n		</button>\n	</ion-list>\n	<o2-tab-bar *ngIf="!(sys.deviceCast | async)?.core"></o2-tab-bar>\n</ion-content>'/*ion-inline-end:"/Users/aitch3/Workspace/O2Palm/test-pwa/src/pages/cards/cards.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__services_system_service__["a" /* SystemService */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__services_routing_service__["a" /* RoutingService */],
+            __WEBPACK_IMPORTED_MODULE_3__services_system_service__["a" /* SystemService */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_3__services_space_service__["a" /* SpaceService */],
-            __WEBPACK_IMPORTED_MODULE_2__services_routing_service__["a" /* RoutingService */],
+            __WEBPACK_IMPORTED_MODULE_2__services_space_service__["a" /* SpaceService */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* MenuController */]])

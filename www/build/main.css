@@ -25696,23 +25696,23 @@ ion-navbar.toolbar {
   height: 100%;
 }
 
-.pwa-main-toolbar .nav-content-left {
-  max-width: 220px;
-}
-
-.pwa-main-toolbar .nav-content-right {
-  max-width: 220px;
-}
-
-tab-bar {
+o2-tab-bar {
   position: absolute;
   bottom: 50px;
   width: 100%;
 }
 
-tab-bar .tabNavbar {
+o2-tab-bar .tabNavbar {
   width: 70%;
   height: 50px;
   background-color: red;
   margin: 0 auto;
+}
+
+o2-top-side-nav .pwa-main-toolbar .nav-content-left {
+  max-width: 220px;
+}
+
+o2-top-side-nav .pwa-main-toolbar .nav-content-right {
+  max-width: 220px;
 }

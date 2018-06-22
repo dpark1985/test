@@ -18,8 +18,8 @@
 <ion-content>
 	<ion-list>
 		<button ion-item *ngFor="let item of temp" (click)="itemSelected(item)">
-			card-{{space.title}}-{{ item.title }}
+			card-Space{{this.navParams.get('spaceid')}}-{{ item.title }}
 		</button>
 	</ion-list>
-	<tab-bar *ngIf="!(sys.deviceCast | async)?.core"  page="cards"></tab-bar>
+	<o2-tab-bar *ngIf="!(sys.deviceCast | async)?.core"></o2-tab-bar>
 </ion-content>

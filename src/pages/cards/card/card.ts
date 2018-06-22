@@ -6,7 +6,7 @@ import { SystemService } from '../../../services/system-service';
 
 @IonicPage({
 	name: 'cards-item',
-	segment: 'cards/:spaceid/:id',
+	segment: 'cards/:spaceid/:itemid',
 	defaultHistory: ['cards']
 })
 @Component({
@@ -22,22 +22,17 @@ export class CardPage {
 		public navCtrl: NavController,
 		public navParams: NavParams
 	) {
-		this.route.cast.first().subscribe((route: any) => {
-			if(route === null && this.navParams.get('id') === 'new') {
-				this.pop();
-			} else {
-				this.route.setCurrentRoute({ name: 'cards-item', spaceid: this.navParams.get('spaceid'), id: this.navParams.get('id') });
-			}
-		});
+		
 	}
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad CardPage');
+
 	}
 
-	pop() {
-		this.route.setCurrentRoute({ name: 'cards', spaceid: this.navParams.get('spaceid') });
-		this.navCtrl.setRoot('cards', { spaceid: this.navParams.get('spaceid') }, { animate: true, direction: 'back' });
+	ionViewWillEnter() {
+		this.route.initPageRoute('cards-item', this.navParams.get('spaceid'), this.navParams.get('itemid'), this.navCtrl);
 	}
+
 
 }

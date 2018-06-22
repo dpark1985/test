@@ -37,16 +37,17 @@ export class O2LeftSideMenuComponent {
 
 	changeSpace(space) {
 		this.route.getCurrentRouteStorage().then((state: any) => {
-			this.spaceService.setCurrentSpace(space);
-			this.route.setCurrentRoute({ name: state.name, spaceid: space.spaceid });
-			this.nav.setRoot(state.name, { spaceid: space.spaceid });
+			this.route.setCurrentRoute({ name: state.name.split('-')[0], spaceid: space.spaceid });
+			this.nav.setRoot(state.name.split('-')[0], { spaceid: space.spaceid });
 		});
 	}
 
 	openAccountSettings() {
 		let profileModal = this.modalCtrl.create('account-settings');
 		profileModal.onDidDismiss((data: any) => {
-			this.nav.setRoot(`account-${data.page}`, { type: data.type });
+			if (data) {
+				this.nav.setRoot(`account-${data.page}`, { type: data.type });
+			}
 		});
 		profileModal.present();
 	}

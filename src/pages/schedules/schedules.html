@@ -1,24 +1,24 @@
 <ng-container *ngIf="sys.deviceCast | async as device">
-		<ion-header *ngIf="!device.core">
-	
-			<ion-navbar>
-				<ion-buttons left>
-					<button ion-button icon-only (click)="toggleMenu()">
-						<ion-icon name="menu"></ion-icon>
-					</button>
-				</ion-buttons>
-				<ion-title>schedules</ion-title>
-			</ion-navbar>
-	
-		</ion-header>
-	</ng-container>
+	<ion-header *ngIf="!device.core">
+
+		<ion-navbar>
+			<ion-buttons left>
+				<button ion-button icon-only (click)="toggleMenu()">
+					<ion-icon name="menu"></ion-icon>
+				</button>
+			</ion-buttons>
+			<ion-title>schedules</ion-title>
+		</ion-navbar>
+
+	</ion-header>
+</ng-container>
 
 
 <ion-content>
 	<ion-list>
 		<button ion-item *ngFor="let item of temp" (click)="itemSelected(item)">
-			schedule-{{space.title}}-{{ item.title }}
+			schedule-Space{{this.navParams.get('spaceid')}}-{{ item.title }}
 		</button>
 	</ion-list>
-	<tab-bar *ngIf="!(sys.deviceCast | async)?.core" page="schedules"></tab-bar>
+	<o2-tab-bar *ngIf="!(sys.deviceCast | async)?.core"></o2-tab-bar>
 </ion-content>

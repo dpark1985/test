@@ -16,16 +16,16 @@ import { SystemService } from '../../services/system-service';
 export class TodosPage {
 
 	temp: any = [
-		{ id: '1', title: '1' },
-		{ id: '2', title: '2' },
-		{ id: '3', title: '3' },
-		{ id: '4', title: '4' },
-		{ id: '5', title: '5' },
-		{ id: '6', title: '6' },
-		{ id: '7', title: '7' },
-		{ id: '8', title: '8' },
-		{ id: '9', title: '9' },
-		{ id: '10', title: '10' },
+		{ itemid: '1', title: '1' },
+		{ itemid: '2', title: '2' },
+		{ itemid: '3', title: '3' },
+		{ itemid: '4', title: '4' },
+		{ itemid: '5', title: '5' },
+		{ itemid: '6', title: '6' },
+		{ itemid: '7', title: '7' },
+		{ itemid: '8', title: '8' },
+		{ itemid: '9', title: '9' },
+		{ itemid: '10', title: '10' },
 	];
 
 	space: any = {
@@ -41,17 +41,12 @@ export class TodosPage {
 		public navParams: NavParams,
 		public menuCtrl: MenuController
 	) {
-
+		this.route.setCurrentRoute({ name: 'todos', spaceid: this.navParams.get('spaceid') });
 	}
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad TodosPage');
 		
-		this.spaceService.cast.subscribe((space: any) => {
-			if (space !== null) {
-				this.space = space;
-			}
-		});
 	}
 
 	toggleMenu() {
@@ -60,8 +55,8 @@ export class TodosPage {
 
 	itemSelected(item) {
 		this.navCtrl.push('todos-item', { 
-			spaceid: this.space.spaceid,
-			id: item.id 
+			spaceid: this.navParams.get('spaceid'),
+			itemid: item.itemid 
 		});
 	}
 

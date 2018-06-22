@@ -20,6 +20,10 @@ export class RoutingService {
 		this.setCurrentRouteStroage(route);
 	}
 
+	clearCurrentRoute() {
+		this.storage.set('routeStates', null);
+	}
+
 	async setCurrentRouteStroage(route: any) {
 		const routeStates = await this.storage.get('routeStates');
 		const currentState = (routeStates === null) ? null : JSON.parse(routeStates).currentState;
@@ -27,7 +31,7 @@ export class RoutingService {
 		const newCurrentState = Object.assign({}, route);
 		const newRouteStates = {
 			pastState: newPastState,
-			currentState : newCurrentState
+			currentState: newCurrentState
 		};
 
 		console.log('-------setCurrentRouteStroage------');
@@ -38,7 +42,7 @@ export class RoutingService {
 
 	async getCurrentRouteStorage() {
 		const routeStates = await this.storage.get('routeStates');
-		if(routeStates !== null) {
+		if (routeStates !== null) {
 			return JSON.parse(routeStates).currentState;
 		} else {
 			return null;
@@ -47,11 +51,30 @@ export class RoutingService {
 
 	async getPastRouteState() {
 		const routeStates = await this.storage.get('routeStates');
-		if(routeStates !== null) {
+		if (routeStates !== null) {
 			return JSON.parse(routeStates).pastState;
 		} else {
 			return null;
 		}
+	}
+
+	public initPageRoute(name: string, spaceid: string, itemid: string, navCtrl: any) {
+		this.getPastRouteState().then((state: any) => {
+			if (state.itemid === 'new') {
+				this.pop(name.split('-')[0], spaceid, navCtrl);
+			} else {
+				this.setCurrentRoute({
+					name: name,
+					spaceid: spaceid,
+					itemid: itemid
+				});
+			}
+		});
+	}
+
+	public pop(name: string, spaceid: string, navCtrl: any) {
+		this.setCurrentRoute({ name: name, spaceid: spaceid });
+		navCtrl.setRoot(name, { spaceid: spaceid }, { animate: true, direction: 'back' });
 	}
 
 }

@@ -15,7 +15,7 @@ export class MyApp {
 
 	rootPage: any;
 	rootParams: any;
-	// spaces: Array<{ title: string, spaceid: string }> = [];
+
 	platformType: object = {
 		android: false,
 		cordova: false,
@@ -29,14 +29,6 @@ export class MyApp {
 		tablet: false,
 		windows: false
 	};
-	// private routing: any;
-
-	tabs: any = [
-		{ title: 'cards', icon: 'albums' },
-		{ title: 'schedules', icon: 'calendar' },
-		{ title: 'todos', icon: 'checkbox-outline' },
-		{ title: 'new', icon: 'add-circle' },
-	];
 
 	constructor(
 		public sys: SystemService,
@@ -70,6 +62,7 @@ export class MyApp {
 	initializePages() {
 		this.rootPage = 'cards';
 		this.rootParams = { spaceid: 'all' };
+		this.route.setCurrentRoute({ name: 'cards', spaceid: 'all' });
 	}
 
 	ionChange(ev: any) {

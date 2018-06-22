@@ -17,8 +17,8 @@
 <ion-content>
 	<ion-list>
 		<button ion-item *ngFor="let item of temp" (click)="itemSelected(item)">
-			todo-{{space.title}}-{{ item.title }}
+			todo-Space{{this.navParams.get('spaceid')}}-{{ item.title }}
 		</button>
 	</ion-list>
-	<tab-bar *ngIf="!(sys.deviceCast | async)?.core" page="todos"></tab-bar>
+	<o2-tab-bar *ngIf="!(sys.deviceCast | async)?.core"></o2-tab-bar>
 </ion-content>
